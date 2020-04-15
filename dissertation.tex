@@ -15,9 +15,12 @@
 \usepackage{bigdelim} % used for tables to set spacing
 \usepackage{bigstrut} % used for tables to set spacing
 \usepackage{graphicx} % used for includegraphics
-\usepackage{subfigure} % allows the use of subfigures
+%\usepackage{subfigure} % allows the use of subfigures
+\usepackage{subcaption} % also allows the use of subfigures but not deprecated
 %\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % used to insert code
 \usepackage{listings}
+\usepackage{pgfgantt}
+\usepackage{lscape}
 
 
 %
@@ -286,7 +289,7 @@ Anomalous activity detection was also found in indoor environments. Fuzzy member
 
 While detecting anomalies is useful for some applications, detecting the occurrence of a specific pre-defined activity is important for many applications. In the following reviewed studies, various vision sensors recorded subjects’ full bodies to detect specific activities using a variety of computational intelligence. These works have the goal of detecting a specific set of activities and differentiating the occurrence from other activities. These related works are able in the best case to exploit full third-person views of the subjects which provide a maximal amount of input information about both the subject and surrounding environment.
 
-One such study described a system designed to detect a single activity (or a single \textit{type} of activity) - falls \cite{Banerjee2014}. This work focused on applications in elderley living facilities , where timely detection of falls is critical.  It compared the use of three different vision sensors in the same facility and was shown to be capable of detecting three fall-related activities - being upright, sitting, and being on the floor.
+One such study described a system designed to detect a single activity (or a single \textit{type} of activity) - falls \cite{Banerjee2014}. This work focused on applications in elderly living facilities , where timely detection of falls is critical.  It compared the use of three different vision sensors in the same facility and was shown to be capable of detecting three fall-related activities - being upright, sitting, and being on the floor.
 
 Another two related works were focused on using full body video sequences to detect activities in a medical setting. These environments, such as a trauma unit or patient room, may be very busy with doctors and nurses, and activities may be happening frequently or simultaneously. Because of this, both of the reviewed studies required systems capable of monitoring several subjects at the same time to identify activities \cite{Chakraborty2013, Bloisi2009}. The systems were focused on outputting activity information for a set of multiple actors in the scene, providing a summary or log of activities that may assist in the coordination of medical actions such as performing chest compressions, intubation, or checking pulse.
 
@@ -454,13 +457,13 @@ This chapter describes the experiments completed to resolve the research questio
 %================================================
 \section{Gait Speed Comparison from Wearable Camera and Accelerometer Vest in Structured and Semi-Structured Environments}
 %================================================
-To address our first research question \emph{(Can wearable sensors be used to unobtrusively monitor activities of subjects in a semi-structured environment?)}, we limit the scope of activities to a single activity - gait. By fixing the activity, we focused instead on the ability of various sensors to describe the parameters of the activity in semi-structured environments (i.e. home-like, controlled, indoor setting without the noise of environmental motion found in public settings).
+To address our first research question \emph{(Can wearable sensors be used to unobtrusively monitor activities of subjects in a semi-structured environment?)}, we limit the scope of activities to a single activity - gait. By fixing the activity, we focused instead on the ability of various sensors to describe the parameters of the activity in semi-structured environments (i.e. home-like, controlled, indoor setting without the noise of environmental motion found in public settings). \emph{This work was published in \cite{Schneider2019ComparisonEnvironments}. A slightly modified version is provided below in this section for reference in this draft.}
 
 Gait analysis is an area of research that has seen an increasing focus due to its applicability to a wide range of age-related health issues which may impact our growing elderly population \cite{Ortman2014AnStates}. For example, Beauchet et. al found evidence that dementia can be predicted by poor gait performance \cite{Beauchet2016PoorMeta-Analysis}. Similarly, Valkanova and Ebmeier show that evidence strongly supports a relationship between gait and impairment of cognitive functions in patients with mild cognitive impairment and Alzheimer's disease \cite{Valkanova2017WhatEvidence}. These findings illustrate the potential of using gait analysis in detecting symptoms of age-related illnesses.
 
 While many objectively quantifiable gait parameters could be used for effective decision support and automated monitoring, the simple measure of \textit{gait speed} has shown to be an accurate predictor of mobility, health, and even mortality \cite{Afilalo2010GaitSurgery, Viccaro2011GaitForce, Fitzpatrick2007AssociationsPersons}. Gait speed is thus a critical parameter for evaluating the utility of candidate gait analysis systems. Therefore, the goal of this study was to determine the feasibility of using our system, comprising an affordable and non-invasive wearable camera and computer-vision based processing methods, to classify gait speed of healthy individuals. Samples of gait were collected at three self-determined over-ground walking speeds (slow, medium, fast). Since accelerometer-based methods have been successfully used to quantify gait, we deployed an accelerometer near the subject's right hip for the purpose of providing a direct point of comparison for our system to a more widely used device. We also compared the capabilities of both devices to a research-grade optical motion capture system which represents the ``gold standard'' for gait analysis. The comparison to both another wearable system and a high-precision standard provides validation for using our single-camera system for gait analysis tasks.
 
-\section{Related Work}
+\subsection{Related Work}
 Expensive laboratory-based gait analysis systems can provide extremely robust quantification of human gait and locomotion. For example, highly precise three-dimensional motion capture systems have recently been used to study detailed gait features across age groups in healthy individuals \cite{Chien2015TheIndividuals} as well as individuals with Parkinson's disease \cite{Corona2016QuantitativeDisease} and Alzheimer's disease \cite{Rucco2017Spatio-temporalCapture}. While these systems can often provide an in-depth description of gait, they are not feasible for the use-case of continuous monitoring due to their size, complexity, and cost. Continuous monitoring of patients in their natural environments during everyday activity provides a more constant and natural sampling of gait activity, enabling the detection of changes in performance over time. Additionally, user-friendly and lower cost pervasive health monitoring systems reduce the burden on patients to make trips to a physician's office, which may be especially cumbersome for the elderly.
 
 Recent work has focused on providing convenient, in-home solutions for activity recognition, eliminating the need for a laboratory setup. Video-based methods may offer inexpensive solutions with performance similar to more sophisticated motion capture systems or floor sensors \cite{Wang2013TowardAdults}, but suffer from obstructed line-of-sight within the home environment. Audio-based systems have also been used to analyze gait in indoor environments \cite{Geiger2013Gait-basedFeatures, Altaf2015AcousticSounds}. While both audio- and video-based systems have shown promise, their use is limited to a specific preconfigured location. To overcome these issues, gait analysis is also being performed with wearable devices, such as smart watches \cite{Suh2016Kalman-Filter-BasedSmart-Watch}, shoe-based wearable sensors \cite{Mariani2013On-shoeDisease}, and wearable accelerometers \cite{Fortune2014ValidityVelocities, Hartmann2009ConcurrentAdults, DelDin2016ValidationUse, Chung2012GaitAccelerometer}. By instrumenting the subject instead of the environment, the systems become portable and problems such as line-of-sight obstruction can be avoided. While these solutions provide promising results for gait analysis, they tend to be either still too complicated for in-home use (e.g., due to the number of components), or incapable of matching the level of precision and capturing gait performance as comprehensively as  laboratory-grade motion analysis systems. Thus, there are trade-offs between accuracy and cost for laboratory-grade motion analysis systems and in-home wearable systems for gait analysis.
@@ -469,9 +472,10 @@ Our system uses a single head-worn camera to collect first-person video. Using c
 
 Our previous work based on the use of a wearable camera (and accelerometer for comparison as a well-established device) has involved collecting data from subjects on a treadmill \cite{Schneider2017}. However, limiting the data collection to occur on a treadmill was an artificial limitation, especially for the in-home use-case being described. In this paper, we remove this limitation and also investigate the impact of changing this aspect of the experimental design to incorporate semi-structured, natural gait sequences from nineteen participants.
 
-\section{Experimental Methods}
+\subsection{Experimental Methods}
+In this section we describe our experimental methods, including our data collection designed for this experiment and our use of signal processing and filtering to process the collected dataset.
 
-\subsection{Data Collection}
+\subsubsection{Data Collection}
 
 \begin{figure}[!t]
 \centering
@@ -493,14 +497,14 @@ Each subject wore two commercial devices during data collection (see Figure \ref
 
 The Pivothead glasses were purchased for \$300 USD and the Hexoskin vest and device may be purchased together for \$499 USD, making them easily available to consumers. While the exact price of the motion capture system is not immediately available and will vary based on configuration, the cost of the 20-camera system is roughly \$100,000 USD. A minimal set of four lower-precision cameras could be obtained for less than \$10,000 USD. Even considering the lower-cost motion capture option, the consumer-grade devices have the advantage of being easy to use, while the motion capture system requires an expert user and extensive instrumentation of the subject. While the motion capture system presents an excellent means for collecting our high-precision truth data, the cost and complexity imply that the motion capture system will only be feasible in a controlled clinical laboratory, and not for continuous, in-home monitoring. While we did not investigate real-time processing, the computational requirements for data from the single camera and inertial sensor would also be much lower than the 20-camera system.
 
-\begin{figure*}[]
+\begin{figure*}
 \centering
 \includegraphics[width=7in]{figure/meanplots}
 \caption{Mean Plots with Standard Error Bars for Recorded Features By Gait Speed}
 \label{fig_meanPlots}
 \end{figure*}
 
-\subsection{Signal Processing}
+\subsubsection{Signal Processing}
 The intent of incorporating the glasses-worn camera into the experiment was to use the collected video to describe the subject's head motion in two dimensions (the frontal and vertical planes) throughout the gait sequence. Since the camera faces directly forward from the glasses, the frontal and vertical axes in physical space correspond to the x- and y-axes of the recorded video. While the camera device collects less data at a lower sampling rate and spatial resolution than a highly accurate 3-D motion capture system, the device is extremely portable, affordable, and simple to operate. However, the visual data requires processing in order to extrapolate information about the movement of the subject who is not in the view of the camera. The Lucas-Kanade optical flow technique was applied to the collected video samples in order to quantify participant motion from the videos \cite{Lucas1981AnVision}. This method output a displacement vector for a series of significant keypoints within a given video frame. An average vector was computed from all keypoint vectors per frame to find a single two-dimensional vector which represented the overall displacement in each frame of video. This approach was previously validated against other possible computer vision techniques and was found to provide the most accurate representation of the actual displacement between frames \cite{Schneider2017PreliminaryProcessing}.
 
 The two-dimensional (frontal, vertical) components of the optical flow displacement vectors were considered over time to generate two separate sets of time series data. Three-axis time series data were also collected from the body-worn accelerometer, and head and center of mass data (each in three dimensions) from the motion-capture system were also analyzed. The time series data were manually separated into segments collected during each of the six trials. The collected data were manually segmented by examining the video and audio, and then recording the start and stop times of each gait segment within the video on a per-frame basis. None of the systems directly provide a determination of when a gait sequence occurs, though it would be feasible to automate this detection based on the collected features and the video data. For this initial work, such a system was not developed since the focus was the output of the system during gait activities. Motion-capture data were filtered in Cortex using a 4th-order low-pass Butterworth filter with a cut-off frequency of 6 Hz, which is the default setting for the low-pass filter in Cortex. Cut-off frequencies in motor control research generally range from 6 to 10 Hz, depending on the behavior being observed. Given that the observed behavior was walking, 6 Hz was much higher than the frequencies of interest and only filtered out sensor noise.
@@ -509,10 +513,10 @@ Because the wearable devices are commercial devices which operate independently 
 
 A periodogram calculation was applied over the entirety of each walk segment for each channel of data being considered. As shown in \cite{Schneider2017PreliminaryProcessing}, the periodogram transformation can be used to identify main frequencies that occur in each time series. We identified for each time series the frequency with the highest amplitude from the computed periodogram to serve as our gait metric. While the periodogram provides an analysis of constant gait speed in \cite{Schneider2017PreliminaryProcessing} and a successful indication of gait speed in temporally short gait sequences collected for this study, longer gait sequences containing changes in gait speed may be better analyzed with methods that consider time locality, such as a spectrogram. For this study we have assumed that gait speed is constant in each gait segment.
 
-\subsection{Statistical Analysis}
+\subsubsection{Statistical Analysis}
 The goal of this work was to determine the feasibility of classifying gait samples categorically by their speed with a specific interest in the performance of the video-based wearable system. We determined whether the collected video-based features were impacted by gait speed in a manner similar to the features from more traditional gait analysis devices. We used analysis of variance (ANOVA) to determine whether our gait metric was significantly impacted by gait speed. Separate ANOVAs were conducted for each plane of motion for each gait measurement system. Data were screened for outliers ($\pm$ 2.5 standard deviations from the median) prior to analysis; 6 trials were identified as outliers, all for the motion capture system in the sagittal plane and likely resulting from obstruction of one or more markers from the cameras' view. Violations of the sphericity assumption were resolved by correcting the degrees of freedom of the statistical test using the Greenhouse-Geisser method.
 
-\section{Results}
+\subsection{Results}
 ANOVA on the frequency-based gait metric derived from the eyeglass camera data revealed no significant differences across gait speed conditions in the vertical plane ($p= .55$, $\eta^2_p = .04$). However, in the frontal plane, there was a significant effect of gait speed, $F(1.49, 22.39) = 36.0$, $p < .001$, $\eta^2_p = .71$.Pairwise post-hoc comparisons revealed significant differences among all three speed conditions (fast vs. medium: Cohen's $d= 1.96$; fast vs. slow: $d= 1.76$; medium vs. slow: $d= 0.75$; all $p< .05$). This indicates that using the frontal plane data ($u$ for the glasses), the sensor was able to distinguish between gait speeds across the three categories. 
  
 As was the case with the camera data, the accelerometer data did not discriminate gait speed conditions in the vertical plane ($p= .26$, $\eta^2_p = .09$). There was a significant effect of gait speed in the frontal plane, $F(1.6, 23.98) = 11.43$, $p < .001$, $\eta^2_p = .43$. Post-hoc tests again identified significant differences among all three speed conditions (fast vs. medium: $d = 0.69$; fast vs. slow: $d= 0.99$; medium vs. slow: $d= 0.68$; all $p < .05$).
@@ -521,8 +525,252 @@ For the motion capture system, we first consider data from the head marker. A si
  
 For the center of mass displacements calculated from the motion capture data, ANOVA revealed significant effects of gait speed in each plane of motion. In the vertical plane [$F(1.37,20.04) = 175$, $p < .001$, $\eta^2_p = .92$], post-hoc tests revealed significant differences among all conditions (fast vs. medium: $d= 3.17$; fast vs. slow: $d= 3.64$; medium vs. slow: $d= 2.69$; all $p< .001$). Likewise, for the frontal plane [$F(1.19,17.88) = 68.52$, $p< .001$, $\eta^2_p = .82$], all pair-wise post-hoc comparisons were significant (fast vs. medium: $d= 1.06$; fast vs. slow: $d= 2.3$; medium vs. slow: $d= 3.81$; all $p< .05$).
 
-\section{Conclusion}
-In this study we evaluated the performance of a gait analysis system which uses only a wearable camera to collect two-dimensional, first-person video. Optical flow and frequency domain analysis were used to generate a dataset from video, and this dataset was then compared to data collected with a wearable tri-axial accelerometer and a 20-camera motion capture system. This is a crucial step to validate our single-camera wearable system against the vest device and the gold standard motion capture system. While both of the latter devices (the accelerometer and motion capture systems) have seen more use in the domain of wearable gait analysis than the wearable camera, our camera-based system has several advantages including cost, simplicity, and the ability to analyze the visual scene to provide context for the gait analysis data. Although the motion-capture system provided superior discrimination of gait speed in all planes of motion, as expected, the eyeglass-based camera system nonetheless discriminated gait speed significantly and outperformed the vest-based accelerometer system. This suggests considerable promise for its use for a variety of health-related gait applications. Future plans include using the camera for in-home activity analysis to perform automated detection of gait activities (eliminating the need for manual segmentation) and measuring changes in gait speed over time as a possible measure of fall risk and physical decline in older adults.
+\subsection{Conclusion}
+In this particular experiment we evaluated the performance of a gait analysis system which uses only a wearable camera to collect two-dimensional, first-person video. Optical flow and frequency domain analysis were used to generate a dataset from video, and this dataset was then compared to data collected with a wearable tri-axial accelerometer and a 20-camera motion capture system. This is a crucial step to validate the use of a single-camera wearable system against the vest device and the gold standard motion capture system. While both of the latter devices (the accelerometer and motion capture systems) have seen more use in the domain of wearable gait analysis than the wearable camera, the camera-based system has several advantages including cost, simplicity, and the ability to analyze the visual scene to provide context for the gait analysis data. Although the motion-capture system provided superior discrimination of gait speed in all planes of motion, as expected, the eyeglass-based camera system nonetheless discriminated gait speed significantly and outperformed the vest-based accelerometer system. This suggests considerable promise for its use in unobtrusive activity monitoring in a semi-structured environment.
+
+%================================================
+\section{Describing Object-centric Activities using Fuzzy Methods}
+%================================================
+To address our second research question (\emph{Can features extracted from first-person videos recorded in subjects’ homes be used to categorize different interactions with objects?}), we removed the limited scope of a single activity from the previous experiment and brought forward the use of a wearable camera and some of the input features from the first-person video. We focused on identifying the occurrence of activities based on the users' interactions with objects.
+
+Recognizing and understanding human activities occurring in video is an important enabling technology to a variety of computationally intelligent systems. The spectrum of all possible human activities is extremely broad with great variance in both the temporal and spatial aspects of activities. These activities exist on a scale of increasing complexity, with simple (or \textit{atomic}) activities occurring for a short period of time with a limited number of movements, while complex activities may comprise several simultaneous simple activities occurring repeatedly for a longer period of time. Identifying the exact point in time when an atomic activity (e.g. picking up a spoon) turns into a complex activity (e.g. making a cup of coffee) is nearly impossible. This dilemma illustrates an inherent amount of fuzziness in the domain of activity recognition - an activity may be accurately described in multiple ways and at multiple levels of specificity.
+
+In this experiment we sought to address the challenge of handling the natural fuzziness in activity recognition that arises from the overlapping boundaries between activities and their definitions. We use fuzzy logic to discover activities in first-person video of daily activities in the kitchen. Using a variety of extracted features and object annotations from the video, the system is able to describe a diverse set of activities and provide information on the nature of activities without requiring extensive training. We seek to describe activities more completely and reliably than current uninterpretable or black box methods. Such a system can be used to detect activities more effectively in an in-home setting with applications such as aging in place in older adults or other rehabilitation applications.
+
+\subsection{Related Work}
+Traditional work in the field of first-person activity recognition is often focused on exploiting information about objects in the scene (i.e. object recognition systems) in order to classify activities being performed \cite{Nakatani2019, McCandless2013, Pirsiavash2012, Sudhakaran2018, Wang2018}. The use of object-based activity models has shown promise, though it suffers from the need to define each classified activity by the objects that are involved. However, visual noise, such as occlusion of the objects, can not only affect the object recognition accuracy, but also hamper the ability of the activity recognition framework as it relies heavily on the identification of objects the human is interacting with. Related works have shown that this noise can be reasonably handled with current object recognition techniques. In fact, \cite{Pirsiavash2012} takes advantage of these changes in appearance to determine whether an interaction is occurring.
+
+Many of the more recent works in this field of study have abandoned traditional video features in favor of deep learning techniques to identify activities occurring in first-person video.   \cite{Li} features a recurrent convolutional neural network (CNN) trained on RGB images, optical flow, and gaze annotations. Similarly, \cite{Ryoo2015} describes the use of convolutional neural network features in a pooled time series representation in combination with a non-linear SVM to identify activities. \cite{Purwanto2017} applies the Hilbert-Huang transform to CNN features and uses an SVM classifier to classify activities. CNN-based techniques are favored for their ability to discover useful features in images and video, but the networks require extensive training. Due to the amount of training required, the set of activities classified by each of these CNN-based systems is fixed and small.
+
+While the deep learning techniques may perform well for a small set of actions when trained against extensive annotated datasets, the requirement of massive amounts of labeled data is a huge limitation in the utility of such methods for activity detection and recognition. Given the multitude of activities that may occur on a daily basis, it is not likely to be feasible to build a training dataset for a system that recognizes a diverse set of these activities. Additionally, when these methods fail to recognize an activity, there is no meaningful output - the deep learning techniques operate as a “black box” and the correlation between features and the output of the system is not well understood outside of that box. Consequently, the identification of an activity has a binary outcome, and when the classification is incorrect, the system provides no useful information.
+
+Fuzzy logic is the means by which we attempt to remove these limitations. In contrast to the pure deep learning approaches, work must be done to extract and understand the video features and their correlation to activities recognized by the system, but the understanding of the parameters provides insight into the type of activity being performed even if the actual name of the activity is unknown. That is, a fuzzy system can provide a result which indicates aspects of the occurring activity without the need to positively identify the activity, incorporating uncertainty that is extremely useful for reliable performance in dynamic environments \cite{Anderson2009}. For many purposes of activity detection, including in-home monitoring of elderly \cite{Banerjee2015, Anderson2009a} and medical patients, human-machine interaction, or life-logging, the fuzzy information may be informative where artificial intelligence techniques produce no useful information.
+
+We take inspiration from existing methods and extract both motion- and object-based features from a set of first-person videos. We describe a fuzzy inference system that uses these features to classify activities occurring in these videos. To our knowledge, the application of fuzzy methods to egocentric activity classification is a novel approach.
+
+
+\subsection{Methods}
+Our goal is to create a fuzzy inference system that classifies a set of activities being performed by the subject of first person videos. We acknowledge that the recognition of an activity is not always a binary decision given the relationships between various atomic and complex activities. For example, multiple atomic activities may occur simultaneously as part of a more complex activity. For this reason, we seek to demonstrate that a fuzzy system of activity recognition which provides a more complete depiction of all aspects of the activities being performed. A simple diagram of our system is provided in Figure \ref{diagram}.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=.9\linewidth]{figure/diagram.png}}
+\caption{Illustration of our system. Features such as optical flow motion vectors and color histograms are extracted from video frames and passed to the fuzzy inference system, which calculates fuzzy membership in three outputs based on a series of rules within the system.}
+\label{diagram}
+\end{figure}
+
+\subsubsection{Features}
+We build our fuzzy inference system around a set of features that are extracted from RGB first-person videos. Table \ref{videoFeatures} lists each of the video features which are used as inputs to the fuzzy inference system. Based on the successes of related work, we extract both object features (bounding box, color histogram) and motion features (optical flow). For features that require two video frames as input, such as optical flow or the color histogram difference, we compute the features using a time delta of 15 frames (using frame $t$ and frame $t+15$). This represents a time difference of 0.25 seconds. In our experimentation, a smaller time difference does not typically provide enough motion information, and a larger time difference violates the assumption of a small time gap required for optical flow techniques.
+
+\begin{table}
+\caption{Video Features}
+\begin{center}
+\begin{tabular}{p{3cm}p{5cm}}
+\hline \\
+\textbf{\textit{Feature}}&\textbf{\textit{Description}} \\
+\hline
+\hline \\
+\textit{Object bounding box} & the location of a rectangular bounding box around each identified object in the video \\ \\
+\textit{Object label} & the name of each identified object \\ \\
+\textit{Frame optical flow} & the mean, 2-dimensional optical flow vector in the video frame computed between frames $t_0$ and $t_1$\\ \\
+\textit{Object optical flow} & the mean, 2-dimensional optical flow vector in the video frame computed between frames $t_0$ and $t_1$ within the bounding box of an object \\ \\
+\textit{Color histogram difference} & the distance metric of the color histogram within the bounding box of an object in frames $t_0$ and $t_1$ \\ \\
+\textit{Hand intersection} & the ratio of pixels within the bounding box of an object that are identified as belonging to a hand \\
+\hline
+\end{tabular}
+\label{videoFeatures}
+\end{center}
+\end{table}
+
+
+The recognition of activities via the fuzzy rules in our system is predicated on the identification of obejcts in the video. The presence and motion of individual objects in the scene are critical inputs to the fuzzy inference system. The fuzzy system is provided with a rectangular bounding box for each object in the scene. The object optical flow feature referenced in Table \ref{videoFeatures}, which is motion occurring within the bounding box area, represents the movement of the object from the persepective of the camera. 
+
+Since the first-person video is recorded by a mobile, body-worn camera, there is expected to be overall motion in the video which is a consequence of the movement of the camera itself. While this motion is not directly used to inform the activity classification process, it must be considered in order to discern the motion of the objects in the scene. This camera motion is approximated by the global optical flow feature in Table \ref{videoFeatures}. Since the camera motion is additive to the motion of the objects, the fuzzy system will consider an object to be moving with the scene only if the perceived motion of the object does not match the global motion of the scene. This implies that the object has some motion relative to its surroundings (presumably through interaction with the object by the subject). Both optical flow features are calculated using the dense Farneback method.
+
+The color histogram difference feature is computed to approximate the amount of change in an object's appearance over a time period. The histogram is computed for all pixels within the object bounding box for two frames, and the difference feature is given by applying the intersection distance metric. This is informative for discerning between activities that involve modifying an object. Previous work has exploited the change in appearance of objects to indicate the occurrence of activities \cite{Pirsiavash2012}.
+
+The object motion and appearance features are used to indicate object interactions, but it is intuitively possible for an object that is not involved in an activity to move or change appearance. To avoid the false detection of activities, a final feature is introduced to approximate the likelihood that each object is being interacted with - the hand intersection feature. Hand regions are segmented from the video based on simple color segmentation. The hand region is intersected with each objects' bounding box, and the intersection feature is computed as the ratio of pixels within the bounding box that coincide with the hand region.
+
+\subsubsection{Fuzzy Membership Functions}
+Table \ref{inputFeatures} summarizes the membership functions for the fuzzy input features. The two dimensions of the motion vectors are considered as separate fuzzy variables for each type of motion since vertical and horizontal motion can occur simultaneously. To compensate for potential noise in the optical flow calculations, a ``low'' membership term is used to represent a lack of any significant motion. The fuzzy membership functions for the input features were determined through experimentation and analysis of the input features during sample activities.
+
+\begin{table}
+\caption{Input Variables to the Fuzzy Inference System}
+\begin{center}
+\begin{tabular}{p{2cm}ll}
+\hline \\
+\textbf{\textit{Input Linguistic Variable}}&\textbf{\textit{Term}}&\textbf{\textit{Membership Function}} \\
+\hline
+\hline \\
+\multirow{3}{2cm}{Frame Motion X (FMX)} & low (LO) & $trap(-0.4, -0.2, 0.2, 0.4)$ \\
+ & left (L) & $trap(-5.0, -3.0, -1.0, -0.25)$ \\
+ & right (R) & $trap(0.25, 1.0, 3.0, 5.0)$ \\
+\hline
+\multirow{3}{2cm}{Frame Motion Y (FMY)} & low (LO) & $trap(-0.4, -0.2, 0.2, 0.4)$ \\
+ & down (D) & $trap(-5.0, -3.0, -1.0, -0.25)$ \\
+ & up (U) & $trap(0.25, 1.0, 3.0, 5.0)$ \\
+\hline
+\multirow{3}{2cm}{Object Motion X (OMX)} & low (LO) & $trap(-0.4, -0.2, 0.2, 0.4)$ \\
+ & left (L) & $trap(-5.0, -3.0, -1.0, -0.25)$ \\
+ & right (R) & $trap(0.25, 1.0, 3.0, 5.0)$ \\
+\hline
+\multirow{3}{2cm}{Object Motion Y (OMY)} & low (LO) & $trap(-0.4, -0.2, 0.2, 0.4)$ \\
+ & down (D) & $trap(-5.0, -3.0, -1.0, -0.25)$ \\
+ & up (U) & $trap(0.25, 1.0, 3.0, 5.0)$ \\
+\hline
+\multirow{5}{2cm}{Color Histogram (CH)} & very low (VLO) & $trap(0, 0, 200, 300)$ \\
+ & low (LO) & $trap(200, 300, 500, 600)$ \\
+ & medium (M) & $trap(500, 600, 900, 1100)$ \\
+ & high (HI) & $trap(1000, 1100, 1900, 2000)$ \\
+ & very high (VHI) & $trap(1900, 2000, 3000, 3000)$ \\
+ \hline
+ \multirow{2}{2cm}{Hand Intersection (HINT)} & low (LO) & $tri(0, 0, 0.02)$ \\
+ & high (HI) & $tri(0.01, 1, 1)$ \\ \\
+\hline
+\end{tabular}
+\label{inputFeatures}
+\end{center}
+\end{table}
+
+
+\subsubsection{Fuzzy Rules}
+Our fuzzy inference system contains rules for recognizing activities based on the input features described in table \ref{inputFeatures}, leading to the output of fuzzy membership values for each activity type. It is important to note that since the system is using fuzzy logic, it is possible for a set of inputs to result in high levels of membership in more than one activity type. In this way, the fuzzy system is more descriptive of the activities that are occurring than non-fuzzy counterparts.
+
+The fuzzy rules in our system provide membership levels in the three outputs - object interaction (Table \ref{interactRules}), object modification (Table \ref{modifyRules}), and object relocation (Table \ref{relocateRules}). These outputs each capture distinguishing aspects of various activities. The following examples of interactions with fruit illustrate each category: picking up the fruit is a relocation activity (the object is being moved in the scene); washing the fruit is an interaction activity (the object is being interacted with in a relatively static position within the scene); slicing the fruit is a modification activity (the appearance of the fruit is being physically changed). It is possible that a complex activity may involve a combination or all of these actions, and therefore result in non-zero membership for more than one activity category. This is the benefit of the fuzzy system.
+
+In computing the final outputs of the system, several intermediate consequents are computed. The fuzzy system computes two separate consequents for overall motion of the scene - a vertical and horizontal output, both on the scale [negative, low, positive]. Similar consequents are computed for object motion. These consequents are based on the optical flow input features and indicate whether motion of the scene and object were negative or positive in each direction (up or down, left or right). The ‘low’ membership indicates that the motion was close to zero and is considered stationery.
+
+The fuzzy system includes a rule representing the object’s level of movement within the scene, the output of which is directly tied to the object modification activity category. The frame and object movement consequents are evaluated together to determine membership for this rule. When the magnitude and direction of the frame and object motions are similar, the result is that the object motion is none or low. When the magnitude and/or direction of the frame and object motions differ, the rule defines that the object motion in the scene is medium or high, depending on the level of disagreement.
+
+To utilize the color histogram difference, a simple rule exists in the system which maps the amount of difference in the two histograms to a membership function for the object modification activity category. A large change in the color histogram of an object intuitively indicates a large change in the appearance of the object, and thus the fuzzy system categorizes a high membership in object modification.
+
+\begin{table}
+\caption{Rules for the Output ``Interaction'' (\textit{HINT}=hand intersection, \textit{INT}=interaction)}
+\begin{center}
+\begin{tabular}{cc}
+\hline \\
+\textbf{\textit{Inputs}}&\textbf{\textit{Outputs}} \\
+\hline
+\hline \\
+\textbf{HINT} & \textbf{INT}\\
+\hline \\
+ LO & LO \\
+ HI & HI \\
+\hline
+\end{tabular}
+\label{interactRules}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\caption{Rules for the Output ``Modification'' (\textit{INT}=interaction, \textit{CH}=color histogram, \textit{MOD}=modification)}
+\begin{center}
+\begin{tabular}{ccc}
+\hline \\
+\multicolumn{2}{c}{\textbf{\textit{Inputs}}}&\textbf{\textit{Outputs}} \\
+\hline
+\hline \\
+\textbf{INT} & \textbf{CH} & \textbf{MOD}\\
+\hline \\
+LO & & LO \\
+ & VLO & LO \\
+ & LO & LO \\
+ & M & HI \\
+ & HI & HI \\
+ & VHI & HI \\
+\hline
+\end{tabular}
+\label{modifyRules}
+\end{center}
+\end{table}
+
+
+\begin{table}
+\caption{Rules for the Output ``Relocation'' (\textit{OMX}=object motion in x direction, \textit{OMY}=object motion in y direction, \textit{FMX}=frame motion in x direction, \textit{FMY}=frame motion in y direction, \textit{INT}=interaction, \textit{REL}=relocation)}
+\begin{center}
+\begin{tabular}{cccccc}
+\hline \\
+\multicolumn{5}{c}{\textbf{\textit{Inputs}}}&\textbf{\textit{Outputs}} \\
+\hline
+\hline \\
+\textbf{OMX} & \textbf{OMY} & \textbf{FMX} & \textbf{FMY} & \textbf{INT} & \textbf{REL}\\
+\hline \\
+ & & & & LO & LO \\
+L & & L & & & LO \\
+R & & R & & &  LO \\
+& U & & U & & LO \\
+& D & & D & & LO \\
+LO & & LO & & & LO \\
+ & LO & & LO & & LO \\
+
+ L & & $\neg$ L & & & HI \\
+ R & & $\neg$ R & & & HI \\
+ & U & & $\neg$ U & & HI \\
+ & D & & $\neg$ D & & HI \\
+ LO & & $\neg$LO & & & HI \\
+ $\neg$LO & & LO & & & HI \\
+ & LO & & $\neg$LO & & HI \\
+ & $\neg$LO & & LO & & HI \\
+\hline
+\end{tabular}
+\label{relocateRules}
+\end{center}
+\end{table}
+
+
+\subsection{Results}
+
+We evaluated our work against a set of eight videos from the Epic Kitchens dataset \cite{Damen2018ScalingDataset}. This dataset contains unscripted first-person videos of subjects performing daily activities such as cooking, washing dishes, and cleaning in their kitchens. Annotations of objects and actions occurring on the objects are provided every 30 frames. The action annotations provided with the dataset comprise over 100 different verbs. For the purpose of evaluating results against the annotated truth, we binned each annotated truth action into one of three action categories reflecting the fuzzy output variables - interaction, modification, and relocation. While our expectation is that actions will have some membership in more than one output category, for current evaluation purposes we chose the annotated truth for each verb based on the category from which the strongest membership is expected. 
+
+The selected videos contain 4310 action annotations, where each action annotation is defined as a tuple of one of 43 unique verbs and one of 56 unique nouns. Of these actions, 1711 were annotated as `interact', 1225 were annotated as `modify', and 977 were annotated as `relocate'. Table \ref{results} summarizes the results for each class of activity.
+
+From Table \ref{results}, we observe that the fuzzy system produces the highest precision (0.523), recall (0.771), and f1 (0.623) metrics for actions in the `interact' class. However, the specificity for the `interact' class is the lowest (0.537), suggesting that the fuzzy system is identifying a sizeable proportion of false negatives along with the true positives in this class. This indicates that our current system is very sensitive to the true positives with a higher recall but performing poorer due to a higher rate of false positives.
+
+On the flip side, our fuzzy system produced the highest specificity metric for the `relocate' class with a specificity of 0.705. The system is identifying a much lower rate of false positives for this class, but this comes at the expense of identifying true positives; this class also has the lowest precision (0.148), recall (0.175), and f1 (0.160) scores. This indicates that there is a need for further parameter tuning to improve model performance.
+
+Our use of the annotations provided with the dataset also introduces some amount of undesirable noise into the input features. For example, the annotated bounding boxes provided with the dataset are imprecise and only updated every 30 frames; Figure \ref{sampleFrame} illustrates two issues with the bounding box annotations - first, the loose fit of the rectangular bounding box to the objects (Figure \ref{sampleA}), which introduces noise in the object motion input features, and second, the low frequency of updates to the bounding box which produces a poor result when the object moves out of the are before the bounding box is updated (Figure \ref{sampleB}).
+
+The current rules implemented in our system are based on a relatively small amount of information from the video, which limits the ability to properly classify activities in more complex scenes, such as when the image is poorly lit, blurry, or otherwise obscured. A system with more features will be better equipped to tolerate this noise.
+
+While the accuracy of our fuzzy system does not exceed the accuracy reported in related work using supervised classification techniques such as deep learning, the system is competitive with their results and shows potential for use after further refinement \cite{Pirsiavash2012, Koppula2016, Lu2019}. The set of features being supplied to our system is small, and those features are simple yet explainable. A set of more robust features is likely to improve the performance of the system. For example, the hand segmentation feature is computed by a simple color segmentation algorithm. Replacing this with a more robust detection of the hand position will give a more reliable result. Similarly, the use of more complex motion features, per-frame annotations, and non-rectangular bounding boxes are all future work that would improve the classification results.
+
+\begin{table}
+\caption{Results of activity classification on first-person video}
+\begin{center}
+\begin{tabular}{cccccc}
+\hline \\
+\textbf{\textit{Activity Class}} & \textbf{\textit{precision}} & \textbf{\textit{recall}} & \textbf{\textit{f1}} & \textbf{\textit{specificity}} \\
+\hline
+interact & 0.523 & 0.771 & 0.623 & 0.537 \\
+modify & 0.265 & 0.325 & 0.292 & 0.642 \\
+relocate & 0.148 & 0.175 & 0.160 & 0.705 \\
+\hline
+\end{tabular}
+\label{results}
+\end{center}
+\end{table}
+
+\begin{figure}[t]
+\begin{subfigure}{.5\textwidth}
+\centerline{\includegraphics[width=.8\linewidth]{figure/frame_4085_cropped.png}}
+\caption{Video frame with loose rectangular bounding boxes around a spatula and faucet}
+\label{sampleA}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+\centerline{\includegraphics[width=.8\linewidth]{figure/frame_4527_cropped.png}}
+\caption{Video frame with object exceeding the rectangular bounding box (the portion of the spatula outside of the bounding box is highlighted in green)}
+\label{sampleB}
+\end{subfigure}
+\caption{Example first-person video frame of subject washing spatula with overlaid bounding boxes, action, and object labels}
+\label{sampleFrame}
+\end{figure}
+
+During the analysis of our results, we also observed subjectivity in the human-generated action annotations provided with the dataset. The annotation of actions on a per-frame basis is very difficult since there is rarely a definitive start and end to an activity at such close temporal resolution. We observed inconsistencies in the application of action labels stemming from the imprecision of natural language. For example, opening a faucet, opening a refrigerator, and opening a bottle are very different types of actions and motions from the subject. While the verb for each of these actions is the same, they are clearly not the same action. The variance seen between these results via the membership in our fuzzy outputs captures the difference much more precisely than the verb label. Thus, we have identified a possible application of fuzzy methods in the refining of annotated truth.
+
+\subsection{Conclusions}
+In this experiment, we took a novel approach to egocentric action classification through the use of a fuzzy inference system, highlighting the potential for the use of the system for in-home monitoring. While the features that were input to the fuzzy system were relatively simple, the system was able to provide fuzzy membership of actions in three unique action categories - object interaction, relocation, and modification - which describe the nature of the interaction. Our evaluation of the system against a set of 4310 unscripted actions revealed the possibility of enhanced action descriptions through fuzzy memberships. This derived understanding can be used for in-home activity analysis in geriatric case, assisted living, or hospital settings. Our evaluation also revealed potential for enhancing the action annotation process. The fuzzy output variables bring the potential to provide a richer description of both atomic and complex activities through varying membership levels in several classes.
+
+Future work with this fuzzy system will involve further parameter tuning using genetic algorithms and enhancing the complexity and number of input features to allow for more complex rules, which will in turn provide a more reliable classification result.
 
 
 
@@ -531,6 +779,53 @@ In this study we evaluated the performance of a gait analysis system which uses 
 %================================================
 
 
+%================================================
+\chapter{Proposed Future Work}
+%================================================
+The work described thus far provides introduction and motivation for our problem of describing activities in first-person video, a review of related works in the field including sensor hardware, types of activities, and computational intelligence methods used, an overview of the proposed methods, and the description and results of previous experiments motivated by our research questions. 
+
+While we can see conclusions from completed experiments relating to the first two research questions posed in the Introduction, Research Question 3 (\emph{Can the activity identification system a) accurately describe activities and b) handle uncertainty in the results better than current state-of-the-art methods?}) necessitates further work to improve the accuracy of the fuzzy system described in section 4.2 and to address the question of whether the system handles uncertainty in activity classification results (i.e. whether the system provides enhanced explainability of the results even when the classification is unknown or incorrect).
+
+\section{Timeline}
+Remaining activities which are expected to provide a satisfactory response to the outstanding research questions are outlined in Figure \ref{timeline}.
+
+%\begin{landscape}
+
+\begin{figure}
+\noindent\resizebox*{\linewidth}{!}{ % Rescale the chart to linewidth
+\begin{ganttchart}[vgrid, hgrid, x unit = 1cm]{1}{13}
+\gantttitle{2020}{9}
+\gantttitle{2021}{4} \\
+\gantttitlelist{4,...,12}{1}
+\gantttitlelist{1,...,4}{1} \\
+\ganttbar{Proposal Defense}{1}{1}\\
+\ganttbar{Optimization of Fuzzy Rules using GA}{1}{2} \\
+\ganttgroup{Enhancements to Input Features}{2}{6} \\
+\ganttbar{Hand recognition with NN}{2}{3} \\
+\ganttbar{Advanced Optical Flow Features}{4}{6} \\
+\ganttbar{Further Rule Discovery and Optimization}{6}{8} \\
+\ganttbar{Evaluation of System}{9}{9}\\
+\ganttbar{Updated Dissertation Document}{10}{11} \\
+\ganttbar{Review and Edit Document}{12}{12} \\
+\ganttbar{Final Defense}{13}{13} \\
+\end{ganttchart}
+}
+\caption{Proposed project timeline}
+\label{timeline}
+\end{figure}
+
+A brief description of the events follows:
+\begin{itemize}
+    \item Optimization of Fuzzy Rules using GA: Refinement and tuning of the existing set of fuzzy rules using genetic algorithms to evolve the membership functions \cite{Tan1999OptimizationRating}. This method optimizes the effectiveness of the existing rules.
+    \item Enhancments to Input Features
+    \begin{itemize}
+        \item Hand recognition with NN: Detecting hands in the video is a strong driver of the classification result. Color segmentation methods are not sufficient across lighting conditions and skin tones. Work has been started on using a neural network to recognize hands but requires additional tuning to be more effective.
+        \item Advanced Optical Flow Features: More complex optical flow-based features have been used in related work \cite{Ryoo2015, Abebe2016}, and these may provide a richer source of data from the observed scene.
+    \end{itemize}
+    \item Further rule discovery and optimization: Following the implementation of new features, a second round of rule optimization and tuning is expected since the new features require new rules.
+\end{itemize}
+
+%\end{landscape}
 
 %%=============================
 %\chapter{In The Beginning}
