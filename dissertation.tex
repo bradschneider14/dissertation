@@ -61,11 +61,11 @@ Activities in First Person Video using Fuzzy Inference} % Needes a line break
 %  I don't know why titles as separated... except in the one case at
 %  the end.
 %-----------------------------------------------------------------------
-\newcommand{\thesisdirector}{Advisor's Name}
-\newcommand{\thesisdirectortitle}{Ph.D., P.E., Get all of these right!}
-\newcommand{\phdProgrameOrDeptChair}{Frank W. Ciarallo} % CHANGE TO: Faculty M. Name FOR MASTER THESIS
+\newcommand{\thesisdirector}{Tanvi Banerjee}
+\newcommand{\thesisdirectortitle}{Ph.D.}
+\newcommand{\phdProgrameOrDeptChair}{Yong Pei} % CHANGE TO: Faculty M. Name FOR MASTER THESIS
 \newcommand{\phdProgrameOrDeptChairEducation}{Ph.D.} % CHANGE TO: Ph.D., P.E. ETC
-\newcommand{\phdProgrameOrDeptChairTitle}{Director, Ph.D. in Engineering Program} % CHANGE TO: Chair, Department of Mechanical and \\ Materials Engineering FOR MASTER THESIS in MME
+\newcommand{\phdProgrameOrDeptChairTitle}{Director, Computer Science and Engineering Ph.D. Program} % CHANGE TO: Chair, Department of Mechanical and \\ Materials Engineering FOR MASTER THESIS in MME
 
 
 % COMMENT THE FOLLOWING 3 LINES FOR MASTER THESIS. PLEASE NOTE THAT FOR MASTER THESIS YOU SHOULD USE "\masterSignaturePage" AND FOR PHD DISSERATION "\phdSignaturePage" IN THE "approval sheet" SECTION.
@@ -76,19 +76,15 @@ Activities in First Person Video using Fuzzy Inference} % Needes a line break
 %-----------------------------------------------------------------------
 %  Final Examination Committee: Comment out the ones you don't need.
 %-----------------------------------------------------------------------
-\newcommand{\fecone}{Advisor, formal name, titles (see business card!)}
+\newcommand{\fecone}{Tanvi Banerjee, Ph.D.}
 
-\newcommand{\fectwo}{Committee member 2}
+\newcommand{\fectwo}{Yong Pei, Ph.D.}
 
-\newcommand{\fecthree}{Committee member 3}
+\newcommand{\fecthree}{Michael Riley, Ph.D.}
 
-\newcommand{\fecfour}{Committee member 4}
+\newcommand{\fecfour}{Mateen Rizki, Ph.D.}
 
-\newcommand{\fecfive}{Committee member 5}
-
-\newcommand{\fecsix}{Committee member 6}
-
-\newcommand{\fecseven}{Committee member 7}
+\newcommand{\fecfive}{Thomas Wischgoll, Ph.D.}
 
 % If you have more committee members... good luck
 
@@ -159,7 +155,12 @@ Activities in First Person Video using Fuzzy Inference} % Needes a line break
 %========================
 % Start editing below.
 %========================
-The abstract should succinctly summarize summarize an the contents of the thesis, stating the problem, the procedure or methods used, the results, and any conclusions.  Doctoral dissertation abstracts should not exceed 350 words.  Master's thesis abstracts should not exceed 150 words.
+Activities of Daily Living (ADL's) are the activities that people perform every day in their home as part of their typical routine. The in-home, automated monitoring of ADL's has broad utility for intelligent systems that enable independent living for the elderly and mentally or physically disabled individuals. With rising interest in electronic health (e-Health) and mobile health (m-Health) technology, opportunities abound for the integration of activity monitoring systems into these newer forms of healthcare.
+
+In this dissertation we propose a novel system for describing ADL's based on video collected from a wearable camera. Most in-home activities are naturally defined by interaction with objects. We leverage these object-centric activity definitions to develop a set of rules for a Fuzzy Inference System (FIS) that uses video features and the identification of objects to identify and classify activities. Further, we demonstrate that the use of FIS enhances the reliability of the system and provides enhance explainability and interpretability of results over popular machine-learning classifiers due to the linguistic nature of fuzzy systems.
+
+
+
 %%%%%%%%%%%%%%%%%%
 %-----------------------------------------------------------------------
 %
@@ -176,29 +177,29 @@ The abstract should succinctly summarize summarize an the contents of the thesis
 %=============================
 %  Acknowledgments
 %=============================
-\newpage
-\thispagestyle{plain}
-\setlength{\parindent}{0em}
-\begin{center}
-{\huge Acknowledgment}
-\end{center}
+% \newpage
+% \thispagestyle{plain}
+% \setlength{\parindent}{0em}
+% \begin{center}
+% {\huge Acknowledgment}
+% \end{center}
 
-I would like to take this opportunity to extend my thanks to\ldots\  If you have multiple paragraphs, the first should not be indented to match the style of the rest of the thesis.
+% I would like to take this opportunity to extend my thanks to\ldots\  If you have multiple paragraphs, the first should not be indented to match the style of the rest of the thesis.
 
-\setlength{\parindent}{2em}
-Any additional paragraphs should be indented as such.  That ugly command before this, you don't need to keep doing that. Remember to thank your advisor and committee members. Probably your Mom, others as you wish. 
+% \setlength{\parindent}{2em}
+% Any additional paragraphs should be indented as such.  That ugly command before this, you don't need to keep doing that. Remember to thank your advisor and committee members. Probably your Mom, others as you wish. 
 %
 %=============================
 %  Dedication
 %=============================
-\newpage
-\thispagestyle{plain}
-\vspace*{3in}
-\begin{center}
-Dedicated to\\
-Somebody special (Wife, husband, girlfriend or boyfriend works well
-here.)
-\end{center}
+% \newpage
+% \thispagestyle{plain}
+% \vspace*{3in}
+% \begin{center}
+% Dedicated to\\
+% Somebody special (Wife, husband, girlfriend or boyfriend works well
+% here.)
+% \end{center}
 %
 %
 %
@@ -219,7 +220,7 @@ here.)
 %-------------------------
 The number of people aged 65 and older in the United States is expected to reach 89 million by 2050, double the number of United States citizens in the same age group in 2011 \cite{Jacobsen2011AmericasPopulation}. As the elderly population continues to grow, so will the need to provide in-home care for the elderly. Elder care has traditionally been lacking qualified, certified practitioners and clinicians, and the demand for in-home health aides is very likely to exceed recruitment rates over this period of growth \cite{Rowe2016PreparingPopulation}. This will result in a growing deficit of qualified healthcare workers for in-home care, which will require the development of new models of healthcare delivery.
 
-One response to this deficit of personnel is to leverage eHealth technology to provide in-home healthcare. In a 2005 report, the World Health Organization (WHO) defined eHealth as the “cost-effective and secure use of information and communications technologies in support of health and health-related fields, including health-care services, health surveillance, health literature, and health education, knowledge and research” and resolved to encourage long-term strategic plans to develop e-Health resources, noting that advances in technology have raised expectations for healthcare \cite{58thWorldHealthAssembly2005WHA58.28EHealth}. Since then, WHO has also formalized the idea of mobile-health, or mHealth, which is similar to eHealth but uses mobile technology. This includes in-home installation of sensors or imaging devices used to monitor patients with chronic illnesses \cite{WorldHealthOrganization2011MHealth:EHealth}. A recent survey of mHealth technology found that mHealth has been found as an effective way to monitor elderly patients suffering from dementia and cognitive disorders including screening for cognitive decline and promoting healthy habits in terms of physical activity \cite{Vazquez2018E-HealthReview}.
+One response to this deficit of personnel is to leverage e-Health technology to provide in-home healthcare. In a 2005 report, the World Health Organization (WHO) defined e-Health as the “cost-effective and secure use of information and communications technologies in support of health and health-related fields, including health-care services, health surveillance, health literature, and health education, knowledge and research” and resolved to encourage long-term strategic plans to develop e-Health resources, noting that advances in technology have raised expectations for healthcare \cite{58thWorldHealthAssembly2005WHA58.28EHealth}. Since then, WHO has also formalized the idea of mobile-health, or m-Health, which is similar to e-Health but uses mobile technology. This includes in-home installation of sensors or imaging devices used to monitor patients with chronic illnesses \cite{WorldHealthOrganization2011MHealth:EHealth}. A recent survey of m-Health technology found that m-Health has been found as an effective way to monitor elderly patients suffering from dementia and cognitive disorders including screening for cognitive decline and promoting healthy habits in terms of physical activity \cite{Vazquez2018E-HealthReview}.
 
 The need for in-home monitoring extends beyond caring for the elderly to monitoring individuals of any age who require assistance living independently due to a mental or physical disability or injury. In addition to the use of in-home monitoring for clinical purposes, it may be an important aspect of ubiquitous smart home systems. As more and more electronic devices are becoming internet-of-things (IoT)-enabled, including televisions, kitchen appliances, and security systems, the demand is growing for systems that automatically understand and react to users and their actions.
 
@@ -245,7 +246,7 @@ Early work was focused on detecting and measuring gait in controlled and semi-co
 
 \emph{Research Question 2: Can features extracted from first-person videos recorded in subjects’ homes be used to categorize different interactions with objects?}
 The use of object interactions to determine activities has been popular in recent automated activity recognition and classification systems \cite{Pirsiavash2012, Sudhakaran2018, Nakatani2018PreliminaryKnowledge, Wang2018, Gokce2019HumanPairs}. Many in-home ADL’s are at least partially defined by interactions with certain objects. For example, knowing that a subject is interacting with a remote control should reveal that the subject is interacting with a television or other electronic device. The search space of candidate activities can be greatly culled by knowing which objects are involved. A desired outcome of this work is to exploit a combination of video and object features to characterize different interactions with objects.
-Building on an initial set of features from previous work with gait, an initial baseline set of features was identified for categorizing object interactions. In addition to the location of objects, this set of features was heavily dependent on optical flow features to identify changes in object location and color features to identify changes in the appearance of objects [cite FUZZ-IEEE]. Additional experiments are needed to extend and refine this set of features and the resulting Fuzzy Inference System (FIS) that was developed, but the initial work proved the feasibility of using first-person video features to categorize object interactions.
+Building on an initial set of features from previous work with gait, an initial baseline set of features was identified for categorizing object interactions. In addition to the location of objects, this set of features was heavily dependent on optical flow features to identify changes in object location and color features to identify changes in the appearance of objects. Additional experiments are needed to extend and refine this set of features and the resulting Fuzzy Inference System (FIS) that was developed, but the initial work proved the feasibility of using first-person video features to categorize object interactions.
 
 \emph{Research Question 3: Can the activity identification system a) accurately describe activities and b) handle uncertainty in the results better than current state-of-the-art methods?}
 While much recent work has been done on using deep learning and neural networks to identify human activities in video sequences (such as run, walk, sit down, throw, turn on faucet, open refrigerator, etc.) \cite{Abebe2016, Ozkan2017, Li2016}, there are two major drawbacks to the current deep learning trend:
@@ -434,19 +435,67 @@ The survey of related work reveals trends in the hardware, computational methods
 \chapter{Methods}
 %================================================
 
-This chapter describes the methods 
+This chapter describes the methods that are used throughout the experiments.
 
 %-------------------------
 \section{Image Features}
 %-------------------------
+Image features computed from first-person video form the basis for the activity detection system described in this document. These features provide the mechanism by which pixels in the two-dimensional RGB video are transformed into data and knowledge leveraged by the computational methods. 
 
-%-------------------------
-\section{Statistical Methods}
-%-------------------------
+\subsection{Optical Flow}
+Optical flow is an algorithm that takes two consecutive frames of video (or frames that occur very closely in time) as input and provides an estimate of the motion vector for pixels in the frame. The motion estimation can be computed for every pixel in the input (\emph{dense}) or for a specific subset of pixels which have been identified as being important (\emph{sparse}). The motion estimates for pixels are computed by considering the linear displacement of corresponding pixels in the two frames as shown in Figure \ref{fig:optical_flow}. The optical flow algorithm provides an estimation of the vector $<dx, dy>$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figure/optical_flow.png}
+    \caption{The pixel specified in the first frame at time $t$, $I(x, y, t)$, translated by $(dx, dy)$ units and is located at $I(x+dx, y+dy, t+dt)$ in the next frame at time $t+dt$.}
+    \label{fig:optical_flow}
+\end{figure}
+
+To compute optical flow, it is necessary to assume that pixels in the image $I(t)$ have equal intensity in the image $I(t+dt)$ for small values of $dt$. This is valid in practice because a small $dt$ represents a time difference where the appearance of the object and lighting conditions are unlikely to change drastically. Based on this, we can set the equation for each pixel in the two images as equal (known as the constant intensity assumption): $I(x, y, t)  = I(x+dx, y+dy, t+dt)$. This equation can be solved for the resulting motion vector using polynomial expansion, Taylor series approximation, and a variety of other methods \cite{Farneback2003Two-FrameOn, Horn1980DeterminingFlow, Lucas1981AnVision}.
+
 
 %-------------------------
 \section{Fuzzy Inference Systems}
 %-------------------------
+Fuzzy Inference Systems (FIS) are systems that accept a series of inputs, process them according to predefined rules, and produce an output. The variables in a fuzzy system, including inputs and outputs, are called fuzzy variables, and take on linguistic values rather than precise numeric values. For example, in a fuzzy system, a temperature variable may be defined to take values in the set ['cold', 'cool', 'warm', 'hot']. Each variable is defined over a \emph{universe}, or range of numeric values. 
+
+\begin{figure}
+    \begin{subfigure}{.5\linewidth}
+        \centering
+        \includegraphics{figure/mem_func.png}
+        \caption{Example membership functions for the fuzzy variable temperature}
+        \label{fig:mem_func}
+    \end{subfigure}
+    \begin{subfigure}{.5\linewidth}
+        \centering
+        \includegraphics{figure/fuzzification.png}
+        \caption{Fuzzification of the crisp value 10 degrees to a fuzzy temperature value}
+        \label{fig:fuzzification}
+    \end{subfigure}
+    \newline
+    \begin{subfigure}{.5\linewidth}
+        \includegraphics{figure/defuzzification.png}
+        \caption{Defuzzification of a fuzzy temperature value to 22 degrees.}
+        \label{fig:defuzzification}
+    \end{subfigure}
+    \caption{Illustration of membership functions, fuzzification, and defuzzification process.}
+    \label{fig:mem_fuzz_defuzz}
+\end{figure}
+
+Membership functions exist for each linguistic term in the set to define a mapping of numeric values to the linguistic terms. Figure \ref{fig:mem_func} illustrates membership functions for the example temperature variable. It is often the case that membership functions overlap. In the overlapping region we can say that the value has membership in multiple terms. This is a critical distinction for fuzzy systems and allows a variable to express some uncertainty. For the example of the temperature variable, a value of 10 degress Celsius falls in both the 'cold' and 'cool' membership functions as illustrated by \ref{fig:fuzzification}. 
+
+The process of transforming the crisp numeric value to the fuzzy value is referred to as \emph{fuzzification}. The reverse process, transforming a fuzzy value to a crisp value, is appropriately called \emph{defuzzification} and is illustrated in \ref{fig:defuzzification}. There are several common defuzzification methods, including centroid, maximum membership, and bisector of area. Defuzzification is an important step in determining the final output of the fuzzy system. 
+
+In this work, we use only Mamdani-type inference in which all output variables are expressed as fuzzy sets. Rules in a Mamdani inferences system are expressed in the form ``\emph{IF $X$ is $x_i$ and $Y$ is $y_j$ THEN $Z$ is $z_k$}'', where $X$, $Y$, and $Z$ are each fuzzy variables and $x_i$, $y_j$, and $z_k$ are terms belonging to the fuzzy sets. An example in a fuzzy system controlling a thermostat might be ``\emph{IF outsideTemp is cold and indoorTemp is low THEN heatSetting is high}.'' Rules may be conjunctive or disjunctive and may contain any number of operands in the rule.
+
+During the evaluation of a rule, the level of membership of the input terms are considered to determine the strength of membership of the output. The Fuzzy `and' operator results in the minimum level of membership strength between the operand terms being passed to the output. By contrast, the fuzzy `or' operator results in the maximum level of membership strength between the two operands being passed to the output.
+
+To illustrate the evaluation of rules, consider the previous example ``\emph{IF outsideTemp is cold and indoorTemp is low THEN heatSetting is high}.'' Let $outsideTemp['cold'] = .35$ and let $indoorTemp['low'] = .1$. The rule is evaluated as $heatSetting['high']=min(.35, .1)=.1$. The final output of the fuzzy system depends on the evaluation of the rest of the rules in the system and the defuzzification method used.
+
+
+
+
 
 %================================================
 \chapter{Experiments and Results}
@@ -800,12 +849,13 @@ Remaining activities which are expected to provide a satisfactory response to th
 \gantttitlelist{1,...,4}{1} \\
 \ganttbar{Proposal Defense}{1}{1}\\
 \ganttbar{Optimization of Fuzzy Rules using GA}{1}{2} \\
-\ganttgroup{Enhancements to Input Features}{2}{6} \\
+\ganttgroup{Enhancements to Input Features}{2}{7} \\
 \ganttbar{Hand recognition with NN}{2}{3} \\
-\ganttbar{Advanced Optical Flow Features}{4}{6} \\
-\ganttbar{Further Rule Discovery and Optimization}{6}{8} \\
+\ganttbar{Advanced Optical Flow Features}{4}{5} \\
+\ganttbar{Object Change Features}{6}{7} \\
+\ganttbar{Further Rule Discovery and Optimization}{8}{8} \\
 \ganttbar{Evaluation of System}{9}{9}\\
-\ganttbar{Updated Dissertation Document}{10}{11} \\
+\ganttbar{Update Dissertation Document}{10}{11} \\
 \ganttbar{Review and Edit Document}{12}{12} \\
 \ganttbar{Final Defense}{13}{13} \\
 \end{ganttchart}
@@ -819,8 +869,9 @@ A brief description of the events follows:
     \item Optimization of Fuzzy Rules using GA: Refinement and tuning of the existing set of fuzzy rules using genetic algorithms to evolve the membership functions \cite{Tan1999OptimizationRating}. This method optimizes the effectiveness of the existing rules.
     \item Enhancments to Input Features
     \begin{itemize}
-        \item Hand recognition with NN: Detecting hands in the video is a strong driver of the classification result. Color segmentation methods are not sufficient across lighting conditions and skin tones. Work has been started on using a neural network to recognize hands but requires additional tuning to be more effective.
+        \item Hand recognition with NN: Detecting hands in the video is a strong driver of the classification result. Color segmentation methods were originally chosen for simplicity but are not sufficient across lighting conditions and skin tones. Work has been started on using a neural network to recognize hands with some initial improvement but requires additional tuning to be more effective.
         \item Advanced Optical Flow Features: More complex optical flow-based features have been used in related work \cite{Ryoo2015, Abebe2016}, and these may provide a richer source of data from the observed scene.
+        \item Object change features: The use of the color histogram to detect change in an object's appearance may only be reliable for sudden or sharp changes in appearance. Additional object shape descriptors and methods of comparing objects' appearances over time will likely improve the performance of the system.
     \end{itemize}
     \item Further rule discovery and optimization: Following the implementation of new features, a second round of rule optimization and tuning is expected since the new features require new rules.
 \end{itemize}
