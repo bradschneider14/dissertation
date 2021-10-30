@@ -157,7 +157,7 @@ Activities in First Person Video using Fuzzy Inference} % Needes a line break
 %========================
 Activities of Daily Living (ADL's) are the activities that people perform every day in their home as part of their typical routine. The in-home, automated monitoring of ADL's has broad utility for intelligent systems that enable independent living for the elderly and mentally or physically disabled individuals. With rising interest in electronic health (e-Health) and mobile health (m-Health) technology, opportunities abound for the integration of activity monitoring systems into these newer forms of healthcare.
 
-In this dissertation we propose a novel system for describing ADL's based on video collected from a wearable camera. Most in-home activities are naturally defined by interaction with objects. We leverage these object-centric activity definitions to develop a set of rules for a Fuzzy Inference System (FIS) that uses video features and the identification of objects to identify and classify activities. Further, we demonstrate that the use of FIS enhances the reliability of the system and provides enhance explainability and interpretability of results over popular machine-learning classifiers due to the linguistic nature of fuzzy systems.
+In this dissertation we propose a novel system for describing ADL's based on video collected from a wearable camera. Most in-home activities are naturally defined by interaction with objects. We leverage these object-centric activity definitions to develop a set of rules for a Fuzzy Inference System (FIS) that uses video features and the identification of objects to identify and classify activities. Further, we demonstrate that the use of FIS enhances the reliability of the system and provides enhanced explainability and interpretability of results over popular machine-learning classifiers due to the linguistic nature of fuzzy systems.
 
 
 
@@ -230,11 +230,18 @@ The need for in-home monitoring extends beyond caring for the elderly to monitor
 %-------------------------
 Activities of Daily Living (ADL’s) are defined as activities routinely performed in daily life, often for basic hygiene and personal care as well as food preparation, housekeeping, and other aspects of independent living. These activities have been studied since at least the 1960s \cite{LawtonAssessmentLiving} as an assessment for the ability to perform physical self-maintenance, especially among the elderly. Several scales of assessment have been proposed, each with the common purpose of evaluating the cognitive and physical capabilities of the subject \cite{LawtonAssessmentLiving, Bucks1996AssessmentScale, Carswell1993ActivitiesDisease}. In the clinical setting, it has been shown that the ability to independently perform ADLs is an indicator of the onset and progression of conditions such as Dementia and Alzheimer's disease \cite{Desai2004ActivitiesTreatment}.
 
-The manual assessment of human activities is dependent on the ability for the subject to be observed, necessitating the use of either in-home visits by a clinician or visits by the subject to clinical laboratories. This can be challenging when considering the expense of home visits and the limited ability of elderly to travel and coordinate appointments. The use of technology through eHealth and mHealth applications to monitor and observe ADLs in a home environment can greatly reduce the impact to both the subject and clinician by providing an unobtrusive, automated method of gathering activity data. [what to cite?]
+The manual assessment of human activities is dependent on the ability for the subject to be observed, necessitating the use of either in-home visits by a clinician or visits by the subject to clinical laboratories. This can be challenging when considering the expense of home visits and the limited ability of elderly to travel and coordinate appointments. The use of technology through eHealth and mHealth applications to monitor and observe ADLs in a home environment can greatly reduce the impact to both the subject and clinician by providing an unobtrusive, automated method of gathering activity data.
 
 A challenge to implementing automated activity detection and recognition systems is the need for a formalized model defining each activity under observation. The ability to recognize activities as they occur comes very naturally for humans, but it is much more difficult to define for a machine. Human activities are defined in overlapping temporal and semantic spaces. That is, one higher-level activity may include the performance of several lower-level activities at the same time. Thus the definition of these activities may be subjective to the observer. 
 
-For example, a subject may perform the high-level activity of preparing breakfast, which involves many actions and movements in a sequence over a significant period of time. Within the action of preparing breakfast, the subject may have accomplished the lower-level activity of making toast, and within that activity the subject may have accomplished the lower-level activity of inserting bread into the toaster. The chain of activities may continue decomposing all the way down to the activity of picking up a bag of bread. Understanding the same or overlapping activities at all of these levels is crucial to a fully functioning activity monitoring system.
+For example, a subject may perform the high-level activity of preparing breakfast, which involves many actions and movements in a sequence over a significant period of time. Within the action of preparing breakfast, the subject may have accomplished the lower-level activity of making toast, and within that activity the subject may have accomplished the lower-level activity of inserting bread into the toaster. The chain of activities may continue decomposing all the way down to the activity of picking up a bag of bread. Figure \ref{fig:activity_scale} illustrates several possible activities involved with this scenario and places them on a scale of increasing complexity. Understanding the same or overlapping activities at all of these levels is crucial to a fully functioning activity monitoring system.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figure/activity_scale.png}
+    \caption{Example of activities with varying spatio-temporal complexity which may occur during the larger activity of preparing breakfast.}
+    \label{fig:activity_scale}
+\end{figure}
 
 
 %-------------------------
@@ -339,7 +346,7 @@ A challenge in detecting activities with fixed RGB vision sensors is the lack of
 
 \subsection{Fixed RGB-Depth Vision Sensors}
 
-As previously discussed, traditional RGB vision sensors record only a two-dimensional mapping of the three-dimensional environment. This is an important limitation because it is not possible to reconstruct the third dimension with high accuracty without the use of a standard vision system that integrates multiple vision sensors to provide different perspectives of the same area (i.e. a stereoscopic camera).
+As previously discussed, traditional RGB vision sensors record only a two-dimensional mapping of the three-dimensional environment. This is an important limitation because it is not possible to reconstruct the third dimension with high accuracy without the use of a standard vision system that integrates multiple vision sensors to provide different perspectives of the same area (i.e. a stereoscopic camera).
 
 An alternative approach to providing depth information from a stereoscopic RGB vision sensor system is to use an RGB-Depth vision sensor. These sensors incorporate a traditional RGB camera, an infrared (IR) camera, and an IR projector. The IR projector projects a pattern of IR light onto the scene which is recorded by the IR camera to determine depth. The depth measures are combined as an extra channel of information with the image captured by the RGB camera. Several studies within our sample used RGB-D vision sensors \cite{Banerjee2014, Yao2016, Akbari2017, Zhao2017, Figueroa-Angulo2013, Ong2013}.
 
@@ -363,7 +370,7 @@ A final use case we found for wearable vision sensors was to describe the motion
 
 \subsection{Wearable RGB-D Vision Sensors}
 
-Very few studies are found which employed wearable RGB-D vision sensors for the purpose of activity recognition. The approach described in on study was based on knowleddge of object interactions, and a robot (rather than a human) was equipped with the wearable RGB-D vision sensor \cite{Li2016}. The purpose of the study was for the robot subject to become aware of the activity it was performing by using knowledge of nearby objects. The wearable sensor was used to detect the objects interacting with the robot’s hands, and that data was fused with position and joint features provided from the robot’s operating system, taking advantage of the availability of both object and posture data. 
+Very few studies are found which employed wearable RGB-D vision sensors for the purpose of activity recognition. The approach described in on study was based on knowledge of object interactions, and a robot (rather than a human) was equipped with the wearable RGB-D vision sensor \cite{Li2016}. The purpose of the study was for the robot subject to become aware of the activity it was performing by using knowledge of nearby objects. The wearable sensor was used to detect the objects interacting with the robot’s hands, and that data was fused with position and joint features provided from the robot’s operating system, taking advantage of the availability of both object and posture data. 
 
 \subsection{Secondary Sensors}
 
@@ -458,24 +465,26 @@ To compute optical flow, it is necessary to assume that pixels in the image $I(t
 %-------------------------
 \section{Fuzzy Inference Systems}
 %-------------------------
-Fuzzy Inference Systems (FIS) are systems that accept a series of inputs, process them according to predefined rules, and produce an output. The variables in a fuzzy system, including inputs and outputs, are called fuzzy variables, and take on linguistic values rather than precise numeric values. For example, in a fuzzy system, a temperature variable may be defined to take values in the set ['cold', 'cool', 'warm', 'hot']. Each variable is defined over a \emph{universe}, or range of numeric values. 
+Fuzzy Inference Systems (FIS) are a type of decision making system that accepts a set of inputs, processes them according to a set of rules, and produces an output decision. Unlike other types of classifiers or decision making systems, FIS uniquely model the 'fuzziness' of truth values that are encountered in real-world applications. The two types of FIS are Mamdani \cite{mamdani1975experiment} and Sugeno \cite{sugeno1985industrial}. In this work, we discuss Mamdani-style inference.
+
+The variables in a fuzzy system are called fuzzy variables (as opposed to \emph{crisp} values found in systems employing traditional binary logic), and take on levels of truth rather than precise numeric values. The levels of truth are defined linguistically. For example, in a fuzzy system, a temperature variable may be defined to take values in the set [`cold', `cool', `warm', `hot']. For any given crisp value, the corresponding fuzzy value is a set of membership levels in each of the terms in the set. Following the example of temperature, a crisp value of 8 degrees Celsius may correspond to the fuzzy temperature value that has membership levels $\{cold: 0.4, cool: 0.75, warm: 0, hot: 0\}$. Membership values are not required to sum to any given value (though they each typically exist in the range $[0,1]$), and the power of fuzzy systems comes from ability to have membership in multiple terms, which is not possible in Boolean systems.
 
 \begin{figure}
+    \centering
     \begin{subfigure}{.5\linewidth}
-        \centering
-        \includegraphics{figure/mem_func.png}
+        \includegraphics[width=\linewidth]{figure/mem_func.png}
         \caption{Example membership functions for the fuzzy variable temperature}
         \label{fig:mem_func}
     \end{subfigure}
+    \newline
     \begin{subfigure}{.5\linewidth}
-        \centering
-        \includegraphics{figure/fuzzification.png}
+        \includegraphics[width=\linewidth]{figure/fuzzification.png}
         \caption{Fuzzification of the crisp value 10 degrees to a fuzzy temperature value}
         \label{fig:fuzzification}
     \end{subfigure}
     \newline
     \begin{subfigure}{.5\linewidth}
-        \includegraphics{figure/defuzzification.png}
+        \includegraphics[width=\linewidth]{figure/defuzzification.png}
         \caption{Defuzzification of a fuzzy temperature value to 22 degrees.}
         \label{fig:defuzzification}
     \end{subfigure}
@@ -483,17 +492,50 @@ Fuzzy Inference Systems (FIS) are systems that accept a series of inputs, proces
     \label{fig:mem_fuzz_defuzz}
 \end{figure}
 
-Membership functions exist for each linguistic term in the set to define a mapping of numeric values to the linguistic terms. Figure \ref{fig:mem_func} illustrates membership functions for the example temperature variable. It is often the case that membership functions overlap. In the overlapping region we can say that the value has membership in multiple terms. This is a critical distinction for fuzzy systems and allows a variable to express some uncertainty. For the example of the temperature variable, a value of 10 degress Celsius falls in both the 'cold' and 'cool' membership functions as illustrated by \ref{fig:fuzzification}. 
 
-The process of transforming the crisp numeric value to the fuzzy value is referred to as \emph{fuzzification}. The reverse process, transforming a fuzzy value to a crisp value, is appropriately called \emph{defuzzification} and is illustrated in \ref{fig:defuzzification}. There are several common defuzzification methods, including centroid, maximum membership, and bisector of area. Defuzzification is an important step in determining the final output of the fuzzy system. 
+\subsection{Fuzzification and Defuzzification}
 
-In this work, we use only Mamdani-type inference in which all output variables are expressed as fuzzy sets. Rules in a Mamdani inferences system are expressed in the form ``\emph{IF $X$ is $x_i$ and $Y$ is $y_j$ THEN $Z$ is $z_k$}'', where $X$, $Y$, and $Z$ are each fuzzy variables and $x_i$, $y_j$, and $z_k$ are terms belonging to the fuzzy sets. An example in a fuzzy system controlling a thermostat might be ``\emph{IF outsideTemp is cold and indoorTemp is low THEN heatSetting is high}.'' Rules may be conjunctive or disjunctive and may contain any number of operands in the rule.
+In order to determine membership levels of fuzzy variables, membership functions exist for each linguistic term in the set to define a mapping of crisp values to amounts of membership in the fuzzy terms. Figure \ref{fig:mem_func} illustrates membership functions for the example temperature variable. It is often the case that membership functions overlap - if they did not, then values will only have membership in one term, which is essentially the same case as Boolean logic. The overlapping regions provide membership in multiple fuzzy terms. This is a critical distinction for fuzzy systems and allows a variable to express some uncertainty.
+
+Membership functions can take any form or shape, but are commonly triangular or trapezoidal. More complex functions, such as Gaussian curves are also common candidates, especially when the problem domain is based on probability or statistics \cite{ali2015comparison}. Much like the choice of activation functions in a neural network depends on the specific problem domain, the choice of membership functions may be driven by the domain to which the FIS is being applied.
+
+Before a FIS can operate on input data, it must transform crisp input values into the fuzzy value space, i.e. map the values into the membership functions. The process of transforming crisp numeric values to the fuzzy values is referred to as \emph{fuzzification}. Similarly, the output of the FIS must be transformed back to crisp values for most applications. This reverse process, transforming a fuzzy value back to a crisp value, is called \emph{defuzzification}. Each of these processes are illustrated in \ref{fig:fuzzification} and \ref{fig:defuzzification}. 
+
+Fuzzification is performed by evaluating each membership function for a variable on the crisp input. The resulting output of the membership function indicates the crisp value's level of membership in that particular variable. The crisp value is represented by the set of membership levels from all membership functions in the set, as shown in the earlier example.
+
+Defuzzification rqeuires the combination of multiple membership levels to be reduced to a single crisp value. There are many methods for accomplishing this, and the selection of defuzzification method greatly impacts the results produced by the system. Common defuzzification methods include maximum membership, centroid, and bisector of area. The maximum membership method simply discards all but the highest membership term, and returns a scalar falling in that membership function (most commonly, mean-max membership is used to return the mean value of the range of the membership function). This means that for a given fuzzy variable, the same scalar will be returned in every case where that membership term is the maximum, regardless of what the membership level was. More complicated methods are based on the area under each membership function. For example, the centroid method returns the geometric centroid of the shape formed by the area under all of the membership functions, as illustrated in \ref{fig:defuzzification}. Similarly, the bisector of area method considers this shape and returns the point that bisects the area. These techniques are capable of returning a continuous range of crisp values, unlike the maximum membership method.
+
+\subsection{Fuzzy Rules}
+
+In this work, we use only Mamdani-type inference in which all variables are expressed as fuzzy sets. Rules in a Mamdani-style inference system are expressed in the form ``\emph{IF $X$ is $x_i$ and $Y$ is $y_j$ THEN $Z$ is $z_k$}'', where $X$, $Y$, and $Z$ are each fuzzy variables and $x_i$, $y_j$, and $z_k$ are terms belonging to the fuzzy sets. An example in a fuzzy system controlling a thermostat might be ``\emph{IF outsideTemp is cold and indoorTemp is low THEN heatSetting is high}.'' Rules may be conjunctive or disjunctive and may contain any number of operands in the rule.
 
 During the evaluation of a rule, the level of membership of the input terms are considered to determine the strength of membership of the output. The Fuzzy `and' operator results in the minimum level of membership strength between the operand terms being passed to the output. By contrast, the fuzzy `or' operator results in the maximum level of membership strength between the two operands being passed to the output.
 
 To illustrate the evaluation of rules, consider the previous example ``\emph{IF outsideTemp is cold and indoorTemp is low THEN heatSetting is high}.'' Let $outsideTemp['cold'] = .35$ and let $indoorTemp['low'] = .1$. The rule is evaluated as $heatSetting['high']=min(.35, .1)=.1$. The final output of the fuzzy system depends on the evaluation of the rest of the rules in the system and the defuzzification method used.
 
+\section{Genetic Algorithms}
+Genetic algorithms (GA) define a process for evolving high-quality solutions to a problem by mimicking the biological processes of natural selection and mutation \cite{holland1992genetic}. This process is often applied to large optimization problems as a means to approximate an optimal solution. Genetic algorithms begin with a set of sub-optimal solutions (the \emph{population}) and iterate through generations of offspring, evaluating generated child solutions against a fitness metric. By allowing the most fit solutions to combine and replicate at each generation, the final population will represent higher-quality solutions than the initial population.
 
+ The structure of fuzzy systems, whose performance is dictated by a number of membership function parameters and rule sets, makes them natural candidates for optimization by a GA. There is much support in related literature for applying genetic algorithms to fuzzy systems \cite{seng1999tuning, karr1991applying, takagi1993neural}.
+
+\subsection{Chromosome Encoding}
+Candidate solutions in a genetic algorithm must be expressed as a set of properties (chromosomes) to facilitate the reproductive process. The method of encoding properties of a solution into chromosomes is highly dependent on the particular problem to which the GA is being applied. Popular choices include value encoding (e.g. binary, hexadecimal, real-valued) which directly encodes  values in an equation or system into different genes on the chromosome, permutation encoding which encodes the ordering of properties into the chromosome, or tree encoding which encodes tree or graph properties of a solution with a complex or graph-like structure (e.g. when using a GA to write an algorithm based on a graph of operations) \cite{kumar2013encoding}.
+
+Since membership functions within a fuzzy system are easily expressed as sets of real values (e.g. for a triangular membership function, a triplet of real values $(x_1, x_2, x_3)$ define the function), the genes within the chromosomes representing fuzzy systems typically use simple value encoding. This allows the GA to evolve the solutions by altering the structure of membership functions within the system. Fuzzy systems are commonly initialized with rules based on intuition applied to the problem domain, but the mapping of crisp input values to fuzzy terms (i.e. the boundary of membership functions) is not always immediately clear. The GA approach provides support for finding appropriate boundaries for the terms. Additionally, GA optimization may find unnecessary terms by evolving a higher-quality solution in which one membership function completely envelopes another. In this case, the GA is capable of optimizing the structure of the system in addition to fine-tuning the membership parameters.
+
+\subsection{Reproduction of Individuals}
+The primary operations by which subsequent generations of a population are created by a GA are crossover and mutation. These genetic operations mimic biological reproduction and accomplish two goals: 1) the preservation of good features in the population (i.e. features which contribute high fitness), and 2) the introduction of random mutations (i.e. new features) into the population. 
+
+Crossover is the process of selecting genes from each parent to build a chromosome for a child. Since only one parent may contribute a given gene, the method of mixing these genes can greatly impact the performance of the GA. Single-point crossover is performed by choosing a random point along the chromosome and including all genes from the first parent before the crossover point, and all genes from the second parent after the crossover point \cite{holland1992genetic}. This process generalizes to $k$-point crossover, where any number of points may be selected to alternate between genes from each parent. For real-valued gene encoding, different forms of blend crossover, where child genes are determined by some operation incorporating both parent values (such as averaging), may be used instead \cite{eshelman1993real}. However, the success of blend crossover depends on the level of correlation between output variables in the fitness function. Additional techniques may be required in non-separable cases \cite{takahashi2001crossover, buche2005accelerating}.
+
+The crossover operation alone investigates solutions in new regions of the solution space. However, to fully mimic evolutionary processes and introduce some amount variability into the population, GA optimization also implements the mutation operation. After crossover is performed, mutation introduces new genetic information with some pre-determined probability. Mutations help to ensure that the population of individuals does not become entirely homogeneous and converge in a sub-optimal solution space \cite{holland1992genetic}. The implementation of mutation is dependent on the chromosomal structure. Real-valued genes may mutate by increasing or decreasing in value within some allowable range of the original value. Binary-encoded genes may mutate by simply flipping a bit in the target gene.
+
+\subsection{Evaluating Fitness}
+In each generation of the GA, the population is evaluated against a fitness metric to determine the most fit solutions. The fitness function represents the problem the GA is attempting to optimize. Fitness functions typically include accuracy, precision, recall, and/or cross-entropy, as would be expected in the training of any classifier. After evaluating each individual, the fitness may be used to inform which individuals are dropped from the population and how likely each individual is to reproduce. Techniques like roulette-wheel selection or tournament selection are popular choices that reward fit individuals with a higher probability of mating \cite{zhong2005comparison}
+
+
+
+\section{Convolutional Neural Networks}
 
 
 
@@ -631,7 +673,7 @@ We build our fuzzy inference system around a set of features that are extracted 
 \end{table}
 
 
-The recognition of activities via the fuzzy rules in our system is predicated on the identification of obejcts in the video. The presence and motion of individual objects in the scene are critical inputs to the fuzzy inference system. The fuzzy system is provided with a rectangular bounding box for each object in the scene. The object optical flow feature referenced in Table \ref{videoFeatures}, which is motion occurring within the bounding box area, represents the movement of the object from the persepective of the camera. 
+The recognition of activities via the fuzzy rules in our system is predicated on the identification of objects in the video. The presence and motion of individual objects in the scene are critical inputs to the fuzzy inference system. The fuzzy system is provided with a rectangular bounding box for each object in the scene. The object optical flow feature referenced in Table \ref{videoFeatures}, which is motion occurring within the bounding box area, represents the movement of the object from the perspective of the camera. 
 
 Since the first-person video is recorded by a mobile, body-worn camera, there is expected to be overall motion in the video which is a consequence of the movement of the camera itself. While this motion is not directly used to inform the activity classification process, it must be considered in order to discern the motion of the objects in the scene. This camera motion is approximated by the global optical flow feature in Table \ref{videoFeatures}. Since the camera motion is additive to the motion of the objects, the fuzzy system will consider an object to be moving with the scene only if the perceived motion of the object does not match the global motion of the scene. This implies that the object has some motion relative to its surroundings (presumably through interaction with the object by the subject). Both optical flow features are calculated using the dense Farneback method.
 
