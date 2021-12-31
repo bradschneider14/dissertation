@@ -42,7 +42,7 @@
 \newcommand{\dept}{Department of Computer Science and Engineering}
 \newcommand{\institution}{Wright State University} % Doubting you will
                                 % change this.
-\newcommand{\thesistitle}{Bridging the Gap between Atomic and Complex
+\newcommand{\thesistitle}{Building an Understanding of Human
 Activities in First Person Video using Fuzzy Inference} % Needes a line break
 \newcommand{\bachdegreeshort}{B.S.} % Bachelor degree short
 \newcommand{\bachinstitution}{Morehead State University} % Bachelor degree institution
@@ -156,9 +156,9 @@ Activities in First Person Video using Fuzzy Inference} % Needes a line break
 %========================
 % Start editing below.
 %========================
-Activities of Daily Living (ADL's) are the activities that people perform every day in their home as part of their typical routine. The in-home, automated monitoring of ADL's has broad utility for intelligent systems that enable independent living for the elderly and mentally or physically disabled individuals. With rising interest in electronic health (e-Health) and mobile health (m-Health) technology, opportunities abound for the integration of activity monitoring systems into these newer forms of healthcare.
+ Activities of Daily Living (ADL's) are the activities that people perform every day in their home as part of their typical routine. The in-home, automated monitoring of ADL's has broad utility for intelligent systems that enable independent living for the elderly and mentally or physically disabled individuals. With rising interest in electronic health (e-Health) and mobile health (m-Health) technology, opportunities abound for the integration of activity monitoring systems into these newer forms of healthcare.
 
-In this dissertation we propose a novel system for describing ADL's based on video collected from a wearable camera. Most in-home activities are naturally defined by interaction with objects. We leverage these object-centric activity definitions to develop a set of rules for a Fuzzy Inference System (FIS) that uses video features and the identification of objects to identify and classify activities. Further, we demonstrate that the use of FIS enhances the reliability of the system and provides enhanced explainability and interpretability of results over popular machine-learning classifiers due to the linguistic nature of fuzzy systems.
+In this dissertation we propose a novel system for describing 's based on video collected from a wearable camera. Most in-home activities are naturally defined by interaction with objects. We leverage these object-centric activity definitions to develop a set of rules for a Fuzzy Inference System (FIS) that uses video features and the identification of objects to identify and classify activities. Further, we demonstrate that the use of FIS enhances the reliability of the system and provides enhanced explainability and interpretability of results over popular machine-learning classifiers due to the linguistic nature of fuzzy systems.
 
 
 
@@ -740,9 +740,9 @@ The object motion and appearance features were useful for indicating information
 
 The major hurdle in computing contact between hands and objects was detecting the hands in the frame. For this, we used machine learning to implement a hand detection network. Two initial attempts were made using a pre-trained, open-source hand-detection network trained on the EgoHands Dataset \cite{Bambach2015}. The first attempt used the model provided by the authors of \cite{Bambach2015}. This model was built to classify a provided region of an image as either hands or background. The selection of windows is critical with this method, since hands can only be detected in proposed windows. A window proposal method was also identified in \cite{Bambach2015}. Resulting detections were much too sparse for use in our FIS as a vast majority of interactions were being missed. Attempting to slide windows over the entirety of each frame, which was computationally inefficient but guaranteed all windows containing hands were proposed, revealed that the detector was not sensitive enough for identifying hands.
 
-To eliminate the need to propose windows for the hand classifier, a second attempt was made which used a Region-based CNN (RCNN). RCNN's are capable of receiving the entire image as input and outputting a set of object bounding boxes and classification scores per bounding box. The RCNN was an open-source implementation which was also pretrained on the EgoHands dataset. This solution proved equally limited and produced too few hand detections to be useful, leading to the conclusion that the data in the EgoHands dataset was not similar enough to the EPIC KITCHENS dataset.
+To eliminate the need to propose windows for the hand classifier, a second attempt was made which used a Region-based CNN (RCNN). RCNN's are capable of receiving the entire image as input and outputting a set of object bounding boxes and classification scores per bounding box. The RCNN was an open-source implementation which was also pre-trained on the EgoHands dataset. This solution proved equally limited and produced too few hand detections to be useful, leading to the conclusion that the data in the EgoHands dataset was not similar enough to the EPIC KITCHENS dataset.
 
-The final, working hand detection solution was produced using an implementation of the MobileNetV2 single shot detection network \cite{Sandler2018Mobilenetv2:Bottlenecks}. Transfer learning was used to gain efficiency in the training process. The network was initialized with a version of the model included in the Tensorflow Model Zoo which was trained for object detection on the Microsoft Common Objects in Context (COCO) 2017 dataset \cite{Lin2015MicrosoftContext}. This initial network was capable of classifying over 90 object types, and modified to classify only a single label - hands. To ease the data demands for the training process, the model was trained on the same EgoHands dataset that the prior two models were trained on. Because the network had previously been trained for object detection, the network reached high accuracty within a few hours of training. Because the earlier models had difficulty detecting hands in the EPIC KITCHENS dataset (even after successfully training on EgoHands), our final model was then also trained on a set of 660 manually annotated images of hands from the EPIC KITCHENS videos. As shown in the loss plots for the final training run (Figure \ref{hand_training}), the model trained very quickly on this final dataset despite being a very lightweight and computationally efficient model.
+The final, working hand detection solution was produced using an implementation of the MobileNetV2 single shot detection network \cite{Sandler2018Mobilenetv2:Bottlenecks}. Transfer learning was used to gain efficiency in the training process. The network was initialized with a version of the model included in the Tensorflow Model Zoo which was trained for object detection on the Microsoft Common Objects in Context (COCO) 2017 dataset \cite{Lin2015MicrosoftContext}. This initial network was capable of classifying over 90 object types, and modified to classify only a single label - hands. To ease the data demands for the training process, the model was trained on the same EgoHands dataset that the prior two models were trained on. Because the network had previously been trained for object detection, the network reached high accuracy within a few hours of training. Because the earlier models had difficulty detecting hands in the EPIC KITCHENS dataset (even after successfully training on EgoHands), our final model was then also trained on a set of 660 manually annotated images of hands from the EPIC KITCHENS videos. As shown in the loss plots for the final training run (Figure \ref{hand_training}), the model trained very quickly on this final dataset despite being a very lightweight and computationally efficient model.
 
 \begin{figure}[t]
 \centerline{\includegraphics[width=\linewidth]{figure/hand_training.png}}
@@ -754,7 +754,7 @@ The final, working hand detection solution was produced using an implementation 
 In this section we detail the structure of the proposed FIS. Each of the previously discussed input features was created to support an intuitive set of fuzzy rules which were used to produce the final outcome of membership levels in the three action categories of interaction, modification, and relocation.
 
 \subsubsection{Fuzzy Membership Functions}
-The input layer of the proposed FIS comprised a set of fuzzy definitions for each of the input features. Tables \ref{inputFeatures} and \ref{outputFeatures} summarize the sets created for the fuzzy input and output features. The two dimensions of the motion vectors were considered as separate fuzzy variables for both frame and object motion. Retaining directional information about the motion was important (as opposed to just the magnitude), and maintaining separate variables per dimension simplified the structure of the system. Each of the other features discussed above was represented by just a single input variable. 
+The input layer of the proposed FIS comprised a set of fuzzy definitions for each of the input features. Tables \ref{inputFeatures} and \ref{outputFeatures} summarize the sets created for the fuzzy input and output features. The two types of the motion vectors were reduced into two features - one describing the difference in the amount of motion between the object and the global frame, and one describing the difference in the direction of motion between the object and the global frame. Each of the other features discussed above was directly represented by a single input variable. 
 
 The final number of terms belonging to each input set was initially determined through manual experimentation and knowledge of the feature extraction methods. For example, to compensate for the level of noise expected in the optical flow calculations, a ``low'' membership term was used to represent a lack of significant motion, or motion within an amount of error that a direction could not confidently be determined. 
 
@@ -769,13 +769,9 @@ Triangular membership functions were used for all membership functions within th
 \textbf{\textit{Input Linguistic Variable}}&\textbf{\textit{Terms}} \\
 \hline
 \hline
-Frame Motion X (FMX) & \{low (LO), left (L), right (R)\} \\
+Motion Magnitude Difference (MAG) & \{low (LO), medium (MD), high (HI)\} \\
 \hline
-Frame Motion Y (FMY) & \{low (LO), down (D), up (U)\} \\
-\hline
-Object Motion X (OMX) & \{low (LO), left (L), right (R)\} \\ 
-\hline
-Object Motion Y (OMY) & \{low (LO), down (D), up (U)\} \\ 
+Motion Direction Difference (DIR) & \{low (LO), medium (MD), high (HI)\} \\
 \hline
 Color Histogram (CH) & \{very low (VLO), low (LO), medium (M), high (HI), very high (VHI)\} \\
 \hline
@@ -875,34 +871,24 @@ LO & & & & $\longrightarrow$ & UN \\
 \paragraph{Relocation}
 The motion features naturally formed the basis for the output membership level in the relocation class. Similarly to the modification rules, the level of interaction informs the level of relocation, since it is assumed that a relocation cannot occur without an interaction. The rules affecting the relocation output are show in Table \ref{relocateRules}. For rules with multiple inputs on the same line are created using the conjunctive operator AND.
 
-The rules effectively form a differencing operation between the object and global frame motion. While the difference could have been computed prior to entering the fuzzy system, cutting the number of rules required, the differencing was performed within the fuzzy system to retain as much of the input information as possible in the event that the information became pertinent to another rule.
+The relocation rules are simply based on a difference between the magnitude and direction of both the object and global frame motion vectors. The magnitude difference is the absolute difference between the magnitudes of the vectors, and the direction difference is computed as the angle between the two vectors using the inverse cosine of the dot product.
 
 \begin{table}
-\caption{Rules for the Output ``Relocation'' (\textit{OMX}=object motion in x direction, \textit{OMY}=object motion in y direction, \textit{FMX}=frame motion in x direction, \textit{FMY}=frame motion in y direction, \textit{INT}=interaction, \textit{REL}=relocation)}
+\caption{Rules for the Output ``Relocation'' (\textit{MAG}=difference in motion magnitude, \textit{DIR}=difference in motion direction, \textit{INT}=interaction, \textit{REL}=relocation)}
 \begin{center}
-\begin{tabular}{ccccccc}
+\begin{tabular}{ccccc}
 \hline
-\multicolumn{5}{c}{\textbf{\textit{Inputs}}} & & \textbf{\textit{Outputs}} \\
+\multicolumn{3}{c}{\textbf{\textit{Inputs}}} & & \textbf{\textit{Outputs}} \\
 \hline
 \hline
-\textbf{OMX} & \textbf{OMY} & \textbf{FMX} & \textbf{FMY} & \textbf{INT} & & \textbf{REL}\\
+\textbf{INT} & \textbf{MAG} & \textbf{DIR} & & \textbf{REL}\\
 \hline
- & & & & LO & $\longrightarrow$ & UN \\
-L & & L & & & $\longrightarrow$ & UN \\
-R & & R & & & $\longrightarrow$ &  UN \\
-& U & & U & &$\longrightarrow$ &  UN \\
-& D & & D & &$\longrightarrow$ &  UN \\
-LO & & LO & & & $\longrightarrow$ & UN \\
- & LO & & LO & & $\longrightarrow$ & UN \\
-
- L & & $\neg$ L & & & $\longrightarrow$ & VL \\
- R & & $\neg$ R & & & $\longrightarrow$ & VL \\
- & U & & $\neg$ U & & $\longrightarrow$ & VL \\
- & D & & $\neg$ D & & $\longrightarrow$ & VL \\
- LO & & $\neg$LO & & & $\longrightarrow$ & VL \\
- $\neg$LO & & LO & & & $\longrightarrow$ & VL \\
- & LO & & $\neg$LO & & $\longrightarrow$ & VL \\
- & $\neg$LO & & LO & & $\longrightarrow$ & VL \\
+LO &  &  & $\longrightarrow$ & UN \\
+ & LO & LO & $\longrightarrow$ & UN \\
+ & MD & & $\longrightarrow$ &  SL \\
+ & & MD &$\longrightarrow$ &  SL \\
+ & HI & & $\longrightarrow$ &  VL \\
+ & & HI &$\longrightarrow$ &  VL \\
 \hline
 \end{tabular}
 \label{relocateRules}
@@ -933,7 +919,7 @@ In order to evolve the FIS using a GA, a genetic/chromosomal representation of t
 }
 \end{lstlisting}
 
-For the process of evolving a high-accuracy solution, the population was initialized with 20 randomized individuals. Each individual was tested against a set of 3,560 actions from the EPIC KITCHENS dataset to evaluate fitness. The actions were sampled from 7 different videos. In an attempt to retain negative prediction value, annotations of objects with no action were also included in this training set since many objects in the scene may be part of no action.
+For the process of evolving a high-accuracy solution, the population was initialized with 20 randomized individuals. Each individual was tested against a set of actions from the EPIC KITCHENS dataset to evaluate fitness. In an attempt to retain negative prediction value, annotations of objects with no action were also included in this training set since many objects in the scene may be part of no action.
 
 Roulette wheel selection was used to select parents for new generations, meaning that each parent had a chance of selection proportional to their fitness relative to the fitness of the other individuals. Single-point crossover was used in the mating process, and mutation occurred with a probability of $p=0.20$. When selected for mutation, a value in the system was allowed to randomly move within $\alpha=1.2$ times the distance to it's neighbors. Since $\alpha > 1$, it was possible for a term to surpass it's neighbor. This was allowed in order to not constrain the evolutionary process. As an implementation detail, care had to be taken to keep the system well-formed, e.g. that the lower bound on a triangular function did not become greater than an upper bound. Following all mutations, the values in each triplet were re-sorted to ensure that the lower, middle, and upper values were appropriately ordered. In this way, a mutated lower value was able to become the middle value of a triangle if it happened to mutate past the original middle value, and so on.
 
@@ -943,6 +929,9 @@ Several fitness functions were experimented with during the training process. As
 This section provides details on the results of the methods used to classify activities using the FIS, including the custom built hand detector, the tuning of the FIS with genetic algorithms, and finally the overall results of classifying activities with the FIS.
 
 \subsubsection{Hand Detection}
+A key factor in the overall output of the FIS is the hand detector accuracy. Using the model and training methods described earlier, hand detection reached a mean average precision (mAP) of 0.995 at 50\% intersection over union (IOU), and a mAP of 0.990 at 75\% IOU when trained on the samples from the EPIC KITCHENS dataset. Figure \ref{sampleHands} illustrates samples of hand detections obtained from the final dataset.
+
+Prior to training on the EPIC KITCHENS data, the model was trained on the EgoHands dataset to a mAP of 0.970 at 50\% IOU and mAP of 0.864 at 75\% IOU. While further training would have likely increased the mAP metric, prior experimentation had revealed that the EgoHands dataset samples were not completely representative of the types of data in the final target dataset, so training was stopped at this level of accuracy. Figure \ref{sampleEgoHands} provides an illustration of the types of images in the EogHands dataset, which contains both first- and third-person hands playing tabletop games. The background of the hands tend to be more uniform than in our dataset, which was likely the cause of poor detections using models trained only on EgoHands.
 
 \begin{figure}[t]
 \begin{subfigure}{.5\textwidth}
@@ -963,39 +952,71 @@ This section provides details on the results of the methods used to classify act
 \label{handsD}
 \end{subfigure}
 \caption{Example first-person video frames of the hand detection model. Hands were detected in these images with a confidence ranging between 0.96 to 1.0, highlighting the robustness of the model to different orientations and poses of hands in the view.}
-\label{sampleFrame}
+\label{sampleHands}
 \end{figure}
 
+\begin{figure}[t]
+\centerline{\includegraphics[width=.65\linewidth]{figure/egoHands1.png}}
+\caption{Example hand detection result from the EgoHands dataset prior to training on EPIC KITCHENS data. The hands do not move from the vicinity of the table, leading to poor detection in datasets with more variation in background.}
+\label{sampleEgoHands}
+\end{figure}
 
 \subsubsection{Genetic Algorithm Tuning}
+As mentioned above, the FIS was fine-tuned using a genetic algorithm. Membership functions within the system were evolved to find a final solution that optimized the F1 score. While the rules of the system were intuitive by design, the shape of the membership functions was not always so, especially for features such as color histogram difference and keypoint similarity ratios. While the relative values and that came from these features are intuitive (i.e. higher score indicated higher change in appearance), it was not immediately clear which values might constitute a `low', `medium', or `high' value for the feature. The GA method of tuning the system mitigated the risk of choosing poor values.
 
+For the tuning, a random population of 20 individuals was initialized. While the initial population was random, care was taken to structure the membership functions in a sensible way, such that the entire universe of values for each feature was covered by at least one membership function. A training dataset of 3,560 actions was sampled from a seven videos in the EPIC KITCHENS dataset. The set of actions was used to evaluate the fitness (F1 score) of each individual in the population. Due to the randomization of the individuals, initial results varied slightly, but in the final training run, the best randomly initialized individual began at an overall F1 of 0.235 and overall accuracy of 0.531. By the end of training, the population achieved an overall F1 score of 0.642 and an overall accuracy of 0.782 on the training set. Running multiple rounds of GA showed that the results consistently converged near this solution. 
+
+Figure \ref{ga_training} illustrates the results over each iteration of training. The training results follow the expected curve of early increases in performance which diminish over time as the system reaches an optimized output. Training was halted after several rounds with no progression on the fitness measure.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=.95\textwidth]{figure/ga_plot.png}}
+\caption{Progression of the GA in optimizing the fitness metric (f1-score) over generations of the GA.}
+\label{ga_training}
+\end{figure}
+
+\paragraph{Discussion}
+The GA was an extremely useful tool for optimizing the performance of the FIS. While it was only used in this work to optimize the membership functions, the training results were also useful for performing feature selection and pruning. For example, the GA training was used to determine whether both keypoint features were necessary, or if one consistently outperformed the other. Both were kept because the solutions evolved with both features achieved better results. Figure \ref{final_mem_funcs} shows that the GA evolved very similar functions for these inputs, indicating that they are providing similar information to the system. However, a closer look at the data revealed that despite producing similar information, each method of keypoint extraction tended to perform well in different situations, so both features were necessary to keep consistent results through this redundancy.
+
+Initially, the FIS was structured to take four motion-based inputs - object movement in two dimensions and global frame movement in two dimensions. The fuzzy rules were structured to detect a difference in these inputs, i.e. if object movement in the vertical axis is `down' and global frame movement in the vertical axis is `up', then the object must be moving relative to its environment so relocation is likely. Earlier versions of the FIS included several terms for each direction of movement for both object and global frame motion, i.e. `very left' and `left', `slightly left', but many of these were dropped from the system when their membership functions were absorbed into their neighboring functions. Similarly, Figure \ref{final_mem_funcs} illustrates how `low' histogram difference was nearly absorbed by `very low'. This result likely meant that the terms could be combined.
+
+After further use of the GA to fine-tune the FIS, it was apparent that preserving the information in each dimension for each input motion feature was confusing the results of the system. In many cases, the system evolved very different ideas of motion with respect to the object and global frame. This is likely due to error in the measurements causing conflicts in the training data. To eliminate this issue, the difference in both magnitude and direction of the two motion vectors was used instead. This allowed the system to train a two membership functions (one for each feature) instead of four (two for each dimension of each feature, giving much better results. Pre-processing the motion estimates into the appropriate inputs was a trivial amount of overhead.
+
+Further improvement may have been possible by encoding the structure of the rules and evolving the entire structure of the system rather than just the parameters within it \cite{Wong2000OptimizationAlgorithm}. However, for the proposed system with a small number of features, it was decided that the intuition in the manually formed rules was more beneficial than rules evolved by a GA which may lack explainability.
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=.95\linewidth]{figure/final_mem_funcs.png}}
+\caption{Final membership functions output from evolution of the FIS using a GA.}
+\label{final_mem_funcs}
+\end{figure}
 
 \subsubsection{Fuzzy Action Classification}
+After tuning both the feature extraction methods and the FIS parameters, we evaluated the final performance of the FIS in classifying activities into the three action intent classes: `interact', `modify', and `relocate'.
 
-We evaluated our work against a set of eight videos from the Epic Kitchens dataset \cite{Damen2018ScalingDataset}. This dataset contains unscripted first-person videos of subjects performing daily activities such as cooking, washing dishes, and cleaning in their kitchens. Annotations of objects and actions occurring on the objects are provided every 30 frames. The action annotations provided with the dataset comprise over 100 different verbs. For the purpose of evaluating results against the annotated truth, we binned each annotated truth action into one of three action categories reflecting the fuzzy output variables - interaction, modification, and relocation. While our expectation is that actions will have some membership in more than one output category, for current evaluation purposes we chose the annotated truth for each verb based on the category from which the strongest membership is expected. 
+We evaluated our work against a set of 17 videos from the EPIC KITCHENS dataset. The selected videos contained 7,186 object-action annotations. Of these actions, 2396 were annotated as `interact', 1612 were annotated as `modify', and 1385 were annotated as `relocate'. The remaining 1793 were labeled as no action (objects that were annotated but not being interacted with). Table \ref{results} summarizes the final metrics overall and for each class of activity. Overall, the system reached an accuracy of 74\%.
 
-The selected videos contain 4310 action annotations, where each action annotation is defined as a tuple of one of 43 unique verbs and one of 56 unique nouns. Of these actions, 1711 were annotated as `interact', 1225 were annotated as `modify', and 977 were annotated as `relocate'. Table \ref{results} summarizes the results for each class of activity.
+From Table \ref{results}, we observe that the fuzzy system produces the highest precision, recall, and f1 metrics for actions in the `interact' class. This can be attributed to the robust hand detector and the centrality metric being both accurate and positively predictive of interaction with objects. However, because objects do pass through the center of view and may appear to contact hands from a two-dimensional perspective, the FIS tended to create err on the side of producing false positives for this class.
 
-From Table \ref{results}, we observe that the fuzzy system produces the highest precision (0.523), recall (0.771), and f1 (0.623) metrics for actions in the `interact' class. However, the specificity for the `interact' class is the lowest (0.537), suggesting that the fuzzy system is identifying a sizeable proportion of false negatives along with the true positives in this class. This indicates that our current system is very sensitive to the true positives with a higher recall but performing poorer due to a higher rate of false positives.
+On the flip side, our fuzzy system produced the highest specificity metric for the `relocate' class, indicating a strong negative predictive value. The system is identifying a much lower rate of false positives for this class, but this comes at the expense of identifying fewer true positives as well since the classifier errs toward negative results for this class; it also has the lowest precision, recall, and f1 scores. This indicates that there is a need for higher precision in the inputs pertaining to the rules for this class. A manual analysis of the samples annotated as relocation action reveals two related but distinct sources of error, both stemming from the use of the bounding boxes provided with the dataset.
 
-On the flip side, our fuzzy system produced the highest specificity metric for the `relocate' class with a specificity of 0.705. The system is identifying a much lower rate of false positives for this class, but this comes at the expense of identifying true positives; this class also has the lowest precision (0.148), recall (0.175), and f1 (0.160) scores. This indicates that there is a need for further parameter tuning to improve model performance.
+\paragraph{Annotation Error}
+The bounding boxes provided with the dataset are only updated every 30 frames of video. Figure \ref{sampleA} illustrates this issue with the bounding box annotation. The low frequency of updates to the bounding box lead to poor results when the object moves out of the area before the bounding box is updated. This is illustrated by the green highlighted portion of the object. The impact on the system is that the object optical flow estimation is no longer strongly correlated to the object it is intended to describe; taking the motion estimate within the box is estimating motion of either the background or other objects (in the case of this example, the subject's hand).
 
-Our use of the annotations provided with the dataset also introduces some amount of undesirable noise into the input features. For example, the annotated bounding boxes provided with the dataset are imprecise and only updated every 30 frames; Figure \ref{sampleFrame} illustrates two issues with the bounding box annotations - first, the loose fit of the rectangular bounding box to the objects (Figure \ref{sampleA}), which introduces noise in the object motion input features, and second, the low frequency of updates to the bounding box which produces a poor result when the object moves out of the are before the bounding box is updated (Figure \ref{sampleB}).
+A second type of error stemming from the use of annotated object bounding boxes is that they are limited to rectangular shapes. This is comparable to the output of many deep learning object detection techniques, such as RCNN's. However, this also leads to noise in the motion features by guaranteeing that some background motion is included in the object motion estimate unless the object is perfectly rectangular. The loose fit of bounding boxes for particularly eccentric objects, i.e. objects with a large ratio of one dimension to another, is easily seen in Figure \ref{sampleB}. The bounding boxes for both the spatula and faucet include substantial amounts of other objects and background despite being well-aligned to the objects they describe (unlike the example in Figure \ref{sampleA}). Pixel-level segmentation of the objects, such as that which could be obtained from a mask R-CNN, would eliminate the issue of loose fitting bounding boxes by segmenting only the pixels belonging to the intended object from it's surroundings.
 
-The current rules implemented in our system are based on a relatively small amount of information from the video, which limits the ability to properly classify activities in more complex scenes, such as when the image is poorly lit, blurry, or otherwise obscured. A system with more features will be better equipped to tolerate this noise.
-
-While the accuracy of our fuzzy system does not exceed the accuracy reported in related work using supervised classification techniques such as deep learning, the system is competitive with their results and shows potential for use after further refinement \cite{Pirsiavash2012, Koppula2016, Lu2019}. The set of features being supplied to our system is small, and those features are simple yet explainable. A set of more robust features is likely to improve the performance of the system. For example, the hand segmentation feature is computed by a simple color segmentation algorithm. Replacing this with a more robust detection of the hand position will give a more reliable result. Similarly, the use of more complex motion features, per-frame annotations, and non-rectangular bounding boxes are all future work that would improve the classification results.
+A generalized object detection model was implemented to investigate the possibility of providing pixel-level masks of objects to 1) avoid the errors in the annotated rectangular boxes and 2) implement a system that is capable of functioning in an environment. Mask RCNN's are a common choice for this task (instance segmentation) and have been shown to perform well in detecting and classifying diverse sets of objects\cite{cheng2020panoptic, chen2019tensormask, michaelis2018one}. The object detection method was implemented using the Detectron2 library and used a pre-trained FPN model trained on the MS COCO dataset \cite{wu2019detectron2}.
 
 \begin{table}
 \caption{Results of activity classification on first-person video}
 \begin{center}
-\begin{tabular}{cccccc}
-\hline \\
-\textbf{\textit{Activity Class}} & \textbf{\textit{precision}} & \textbf{\textit{recall}} & \textbf{\textit{f1}} & \textbf{\textit{specificity}} \\
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline 
+\textbf{\textit{Activity Class}} & \textbf{\textit{accuracy}} & \textbf{\textit{precision}} & \textbf{\textit{recall}} & \textbf{\textit{specificity}} & \textbf{\textit{f1}} \\
+\hline \hline
+interact & 0.767 & 0.766 & 0.991 & 0.909 & 0.864 \\
+modify & 0.651 & 0.268 & 0.319 & 0.748 & 0.291 \\
+relocate & 0.775 & 0.242 & 0.078 & 0.942 & 0.118 \\
 \hline
-interact & 0.523 & 0.771 & 0.623 & 0.537 \\
-modify & 0.265 & 0.325 & 0.292 & 0.642 \\
-relocate & 0.148 & 0.175 & 0.160 & 0.705 \\
+overall & 0.740  & 0.702 & 0.598 & 0.779 & 0.646  \\
 \hline
 \end{tabular}
 \label{results}
@@ -1004,13 +1025,13 @@ relocate & 0.148 & 0.175 & 0.160 & 0.705 \\
 
 \begin{figure}[t]
 \begin{subfigure}{.5\textwidth}
-\centerline{\includegraphics[width=.8\linewidth]{figure/frame_4085_cropped.png}}
-\caption{Video frame with loose rectangular bounding boxes around a spatula and faucet}
+\centerline{\includegraphics[width=.95\textwidth]{figure/frame_4527_cropped.png}}
+\caption{Video frame with object exceeding the rectangular bounding box (the portion of the spatula outside of the bounding box is highlighted in green)}
 \label{sampleA}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
-\centerline{\includegraphics[width=.8\linewidth]{figure/frame_4527_cropped.png}}
-\caption{Video frame with object exceeding the rectangular bounding box (the portion of the spatula outside of the bounding box is highlighted in green)}
+\centerline{\includegraphics[width=.95\textwidth]{figure/frame_4085_cropped.png}}
+\caption{Video frame with loose rectangular bounding boxes around a spatula and faucet \\ }
 \label{sampleB}
 \end{subfigure}
 \caption{Example first-person video frame of subject washing spatula with overlaid bounding boxes, action, and object labels}
@@ -1018,6 +1039,10 @@ relocate & 0.148 & 0.175 & 0.160 & 0.705 \\
 \end{figure}
 
 During the analysis of our results, we also observed subjectivity in the human-generated action annotations provided with the dataset. The annotation of actions on a per-frame basis is very difficult since there is rarely a definitive start and end to an activity at such close temporal resolution. We observed inconsistencies in the application of action labels stemming from the imprecision of natural language. For example, opening a faucet, opening a refrigerator, and opening a bottle are very different types of actions and motions from the subject. While the verb for each of these actions is the same, they are clearly not the same action. The variance seen between these results via the membership in our fuzzy outputs captures the difference much more precisely than the verb label. Thus, we have identified a possible application of fuzzy methods in the refining of annotated truth.
+\\
+\textbf{------ END UPDATES TO DRAFT ------}
+\\
+
 
 \subsection{Conclusions}
 In this experiment, we took a novel approach to egocentric action classification through the use of a fuzzy inference system, highlighting the potential for the use of the system for in-home monitoring. While the features that were input to the fuzzy system were relatively simple, the system was able to provide fuzzy membership of actions in three unique action categories - object interaction, relocation, and modification - which describe the nature of the interaction. Our evaluation of the system against a set of 4310 unscripted actions revealed the possibility of enhanced action descriptions through fuzzy memberships. This derived understanding can be used for in-home activity analysis in geriatric case, assisted living, or hospital settings. Our evaluation also revealed potential for enhancing the action annotation process. The fuzzy output variables bring the potential to provide a richer description of both atomic and complex activities through varying membership levels in several classes.
